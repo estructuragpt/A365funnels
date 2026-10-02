@@ -5,7 +5,9 @@ vi.mock('@ai-sdk/anthropic', () => ({
   createAnthropic: vi.fn(() => vi.fn((modelId: string) => ({ __anthropic: modelId }))),
 }));
 vi.mock('@ai-sdk/openai', () => ({
-  createOpenAI: vi.fn(() => vi.fn((modelId: string) => ({ __openai: modelId }))),
+  createOpenAI: vi.fn(() => ({
+    chat: vi.fn((modelId: string) => ({ __openai: modelId })),
+  })),
 }));
 
 import { resolveLlmModel } from '@/lib/ai/provider';
