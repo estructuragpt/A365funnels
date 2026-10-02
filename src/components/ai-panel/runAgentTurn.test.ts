@@ -41,6 +41,25 @@ function setup(response: Response, autoGenerateImages = false) {
 afterEach(() => { vi.unstubAllGlobals(); vi.clearAllMocks(); });
 
 describe('runAgentTurn response formats', () => {
+  it('shows a typed upstream JSON failure without changing the page', async () => {
+    const { deps, applyDone, setMessages, persistSession } = setup(Response.json({
+      code: 'LLM_INVALID_JSON', error: 'The model did not return valid JSON. Please try again.',
+      attemptId: 'attempt-1',
+    }, { status: 502 }));
+    const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+    try {
+      await runAgentTurn([userMessage], deps);
+      expect(applyDone).not.toHaveBeenCalled();
+      const messages = [userMessage, expect.objectContaining({
+        role: 'assistant', error: true,
+        text: 'The model did not return valid JSON. Please try again. (HTTP 502)',
+      })];
+      expect(setMessages).toHaveBeenCalledWith(messages);
+      expect(persistSession).toHaveBeenCalledWith(messages);
+    } finally {
+      consoleSpy.mockRestore();
+    }
+  });
   it('applies a successful JSON response and persists the assistant explanation', async () => {
     const { deps, applyDone, setMessages, persistSession } = setup(Response.json(payload));
     await runAgentTurn([userMessage], deps);

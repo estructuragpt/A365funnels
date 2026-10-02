@@ -7,6 +7,7 @@ import { runPageBuilderAgent } from '@/lib/ai/agent';
 import { getComponentCatalog } from '@/components/builder/config';
 import { LlmNotConfiguredError } from '@/lib/llm/errors';
 import { createLogger } from '@/lib/logger';
+import { describeJsonFailure } from '@/lib/ai/json-failure';
 
 const logger = createLogger('AiChat');
 
@@ -32,6 +33,8 @@ function jsonError(message: string, status: number): Response {
 }
 
 export const POST: APIRoute = async (ctx) => {
+  const attemptId = crypto.randomUUID();
+  const startedAt = Date.now();
   await requireFeature('PAGES');
   let body: ChatRequest;
   try {
@@ -109,6 +112,7 @@ export const POST: APIRoute = async (ctx) => {
   });
 
   logger.info('Agent generate starting', {
+    attemptId,
     modelId: resolved.modelId,
     protocol: resolved.protocol,
     useTools,
@@ -145,6 +149,7 @@ export const POST: APIRoute = async (ctx) => {
           });
 
           logger.info('Agent generate result', {
+            attemptId,
             textLength: result.text?.length ?? 0,
             finishReason: result.finishReason,
             steps: result.steps?.length,
@@ -194,6 +199,8 @@ export const POST: APIRoute = async (ctx) => {
     });
 
     logger.info('Agent generate result', {
+      attemptId,
+      elapsedMs: Date.now() - startedAt,
       hasObject: !!result.object,
       textLength: result.text?.length ?? 0,
       finishReason: result.finishReason,
@@ -217,6 +224,20 @@ export const POST: APIRoute = async (ctx) => {
 
     return jsonResponse({ explanation, content: newContent, root: newRoot });
   } catch (error) {
+    const diagnostics = describeJsonFailure(error);
+    if (diagnostics) {
+      logger.error('Agent generation failed', {
+        attemptId,
+        elapsedMs: Date.now() - startedAt,
+        modelId: resolved.modelId,
+        ...diagnostics,
+      });
+      return jsonResponse({
+        code: 'LLM_INVALID_JSON',
+        error: 'The model did not return valid JSON. Please try again.',
+        attemptId,
+      }, 502);
+    }
     logger.error('Agent generation failed', { error });
     return jsonError('AI generation failed. Please try again.', 500);
   }
