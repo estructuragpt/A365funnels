@@ -319,7 +319,10 @@ export async function runPageBuilderAgent(
     messages,
   });
 
-  const rawObject = RawOutputSchema.parse(JSON.parse(result.text.trim()));
+  const jsonText = result.text.trim()
+    .replace(/^```(?:json)?\s*/i, '')
+    .replace(/\s*```$/, '');
+  const rawObject = RawOutputSchema.parse(JSON.parse(jsonText));
   return {
     object: normalizeOutput(rawObject),
     text: result.text ?? '',

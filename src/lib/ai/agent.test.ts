@@ -39,6 +39,39 @@ it('parses page JSON locally without sending a structured output schema', async 
   });
 });
 
+it('accepts JSON inside a fenced code block', async () => {
+  generateTextMock.mockReset();
+  generateTextMock.mockResolvedValue({
+    text: '```json\n{"content":[],"root":{"maxWidth":"1080"}}\n```',
+    steps: [], finishReason: 'stop', usage: {},
+  });
+  const result = await runPageBuilderAgent({
+    model: 'fake' as never, componentCatalog: [], messages: [], systemPrompt: 'JSON',
+  });
+  expect(result.object?.root).toEqual({ maxWidth: '1080' });
+});
+
+it('rejects malformed page JSON instead of reporting success', async () => {
+  generateTextMock.mockReset();
+  generateTextMock.mockResolvedValue({
+    text: '{"content":"not an array"}',
+    steps: [], finishReason: 'stop', usage: {},
+  });
+  await expect(runPageBuilderAgent({
+    model: 'fake' as never, componentCatalog: [], messages: [], systemPrompt: 'JSON',
+  })).rejects.toThrow();
+});
+
+it('rejects an empty model response', async () => {
+  generateTextMock.mockReset();
+  generateTextMock.mockResolvedValue({
+    text: '', steps: [], finishReason: 'stop', usage: {},
+  });
+  await expect(runPageBuilderAgent({
+    model: 'fake' as never, componentCatalog: [], messages: [], systemPrompt: 'JSON',
+  })).rejects.toThrow();
+});
+
 describe('RawOutputSchema', () => {
   const validContent = [
     { type: 'HeroPanel', props: { id: 'h1', headline: 'x' } },
