@@ -42,6 +42,23 @@ describe('POST /api/page/ai-chat', () => {
     expect(JSON.stringify([h.error.mock.calls, h.info.mock.calls])).not.toContain(sentinel);
   });
 
+  it('returns a typed 502 for a whitespace-only completion without echoing it', async () => {
+    h.agent.mockRejectedValue(new NoObjectGeneratedError({
+      message: 'No object generated: could not parse the response.',
+      text: ' '.repeat(318), finishReason: 'stop',
+      cause: new SyntaxError('whitespace-only JSON'), response: {},
+      usage: { inputTokens: 2895, outputTokens: 459 },
+    } as ConstructorParameters<typeof NoObjectGeneratedError>[0]));
+    const res = (await POST(request())) as Response;
+    expect(res.status).toBe(502);
+    expect(await res.json()).toMatchObject({ code: 'LLM_INVALID_JSON' });
+    expect(h.agent).toHaveBeenCalledTimes(1); // No unapproved billable retry.
+    expect(h.error).toHaveBeenCalledWith('Agent generation failed', expect.objectContaining({
+      category: 'empty', isBlank: true, textLength: 318,
+      finishReason: 'stop', inputTokens: 2895, outputTokens: 459,
+    }));
+  });
+
   it('keeps the successful JSON contract and correlates the result', async () => {
     h.agent.mockResolvedValue({ object: { explanation: 'Done', content: [{ type: 'Hero', props: {} }], root: { maxWidth: '1080' } }, text: '', steps: [], finishReason: 'stop', usage: {} });
     const res = (await POST(request())) as Response;
