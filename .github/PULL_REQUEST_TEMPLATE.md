@@ -12,12 +12,14 @@ Closes #
 
 ## Testing
 
-How did you verify this? (commands run, manual UI testing, new tests)
+List commands and observed results, including failures or skipped checks and why.
+For test-first behavior changes, record the focused RED failure and GREEN pass;
+CI cannot establish when a test was written. Use N/A for changes without a
+meaningful runnable RED (for example, passive documentation).
 
 - [ ] `pnpm test`
-- [ ] `pnpm verify:types`
-- [ ] `pnpm verify:tests`
-- [ ] `pnpm verify:schema` (if the schema changed)
+- [ ] `pnpm build`
+- [ ] `pnpm test:coverage` (when relevant)
 
 ## Checklist
 
