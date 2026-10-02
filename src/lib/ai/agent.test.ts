@@ -14,14 +14,15 @@ vi.mock('./skill-loader', () => ({
 
 import { RawOutputSchema, runPageBuilderAgent } from './agent';
 
-it('parses page JSON locally without sending a structured output schema', async () => {
+it('requests JSON mode without sending a strict structured output schema', async () => {
   generateTextMock.mockReset();
   generateTextMock.mockResolvedValue({
-    text: JSON.stringify({
+    output: {
       explanation: 'Listo',
       content: [{ type: 'HeroPanel', props: { headline: 'Hola' } }],
       root: { maxWidth: '1080' },
-    }),
+    },
+    text: '',
     steps: [], finishReason: 'stop', usage: {},
   });
   const result = await runPageBuilderAgent({
@@ -31,7 +32,8 @@ it('parses page JSON locally without sending a structured output schema', async 
     systemPrompt: 'Devuelve JSON',
   });
   expect(generateTextMock).toHaveBeenCalledOnce();
-  expect(generateTextMock.mock.calls[0][0]).not.toHaveProperty('output');
+  const output = generateTextMock.mock.calls[0][0].output;
+  expect(await output.responseFormat).toEqual({ type: 'json' });
   expect(result.object).toEqual({
     explanation: 'Listo',
     content: [{ type: 'HeroPanel', props: { headline: 'Hola' } }],

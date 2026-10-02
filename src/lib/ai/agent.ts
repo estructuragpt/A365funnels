@@ -5,6 +5,7 @@ import {
   generateText,
   streamText,
   stepCountIs,
+  Output,
   type LanguageModel,
   type ModelMessage,
 } from 'ai';
@@ -317,12 +318,13 @@ export async function runPageBuilderAgent(
     model,
     system,
     messages,
+    output: Output.json(),
   });
 
   const jsonText = result.text.trim()
     .replace(/^```(?:json)?\s*/i, '')
     .replace(/\s*```$/, '');
-  const rawObject = RawOutputSchema.parse(JSON.parse(jsonText));
+  const rawObject = RawOutputSchema.parse(result.output ?? JSON.parse(jsonText));
   return {
     object: normalizeOutput(rawObject),
     text: result.text ?? '',
