@@ -205,10 +205,32 @@ export async function runAgentTurn(allMessages: ChatMessage[], deps: RunAgentTur
           timeline: finalTimeline,
         });
       }
+    } else if (contentType.includes('application/json')) {
+      // OpenAI-compatible page generation returns one completed JSON payload.
+      const data: unknown = await res.json();
+      if (
+        !data || typeof data !== 'object' ||
+        typeof (data as DonePayload).explanation !== 'string' ||
+        !Array.isArray((data as DonePayload).content) ||
+        !(data as DonePayload).content!.every((item) =>
+          item && typeof item === 'object' && typeof item.type === 'string' &&
+          item.props !== null && typeof item.props === 'object' && !Array.isArray(item.props)) ||
+        (data as DonePayload).root === null ||
+        (typeof (data as DonePayload).root !== 'undefined' &&
+          (typeof (data as DonePayload).root !== 'object' || Array.isArray((data as DonePayload).root)))
+      ) {
+        throw new Error('Invalid page response from server');
+      }
+      const done = data as DonePayload;
+      adapter.applyDone({ ...done, autoGenerateImages });
+      appendMessage({ role: 'assistant', text: done.explanation });
+      if (autoGenerateImages && adapter.getPendingMedia && adapter.applyGeneratedMedia) {
+        await runMediaGenerationPhase(deps, appendMessage);
+      }
     } else {
       appendMessage({
         role: 'assistant',
-        text: 'Server returned a non-streaming response. See server logs.',
+        text: 'Server returned an unsupported response format. See server logs.',
         error: true,
       });
     }
