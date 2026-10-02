@@ -33,19 +33,36 @@ app is through the deploy shell created by the CLI:
 npx autonnel create my-funnel
 ```
 
-## Before you open a PR
+## Development and verification
 
-Run the same gates CI runs:
+For substantial changes, keep a versioned ODD task record under `odd/tasks/` with
+scope, risks, progress, and verification evidence. Mirror important decisions to
+the `autonnel` Engram project when available; the task document remains the
+repository record. Small passive edits need no new task document.
+
+For meaningful behavior changes with runnable, deterministic tests, work in
+RED → GREEN → REFACTOR slices: run a new focused test and observe its expected
+failure before implementing; make it pass, run the suite, then refactor with
+tests green. New modules and bug fixes should include behavior tests. For
+passive documentation or configuration without a deterministic behavior test,
+record why RED does not apply and verify structure or the relevant build instead.
+Do not report test-first evidence unless you observed it; CI cannot establish
+when a test was written.
+
+Before a PR, run applicable checks. `test`, `build`, and `test:coverage` are
+`package.json` scripts; the focused command uses the installed Vitest binary:
 
 ```bash
-pnpm test              # vitest unit/integration suite
-pnpm verify:types      # type checks
-pnpm verify:tests      # test-coverage gate for core modules
-pnpm verify:schema     # prisma schema checks
+pnpm test                 # Vitest suite
+pnpm exec vitest run <test-file>  # focused test file, when applicable
+pnpm build                # Astro and package build
+pnpm test:coverage        # coverage report, when relevant
 ```
 
-New modules and bug fixes **must** come with tests. Verify the tarball is still
-lean before packaging-related changes:
+Record the exact commands and results, any skipped checks and reasons, and
+RED/GREEN observations or an honest exception in the handoff/PR description.
+These are local checks; do not assume the tag-release workflow checks PRs.
+Verify the tarball is still lean before packaging-related changes:
 
 ```bash
 npm pack --dry-run

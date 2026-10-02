@@ -33,6 +33,9 @@ dist-ssr
 **/*.gz
 public/**/*.png
 *.md
+!AGENTS.md
+!odd/tasks/
+!odd/tasks/*.md
 
 .playwright-mcp
 .wrangler
