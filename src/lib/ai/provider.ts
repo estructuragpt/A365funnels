@@ -38,7 +38,7 @@ export async function resolveLlmModel(name?: string): Promise<ResolvedModel> {
 
   logger.info('Creating OpenAI-compatible model', { baseUrl: normalizedUrl, modelId });
   return {
-    model: createOpenAI({ baseURL: normalizedUrl, apiKey: row.apiKey })(modelId),
+    model: createOpenAI({ baseURL: normalizedUrl, apiKey: row.apiKey }).chat(modelId),
     modelId,
     protocol: 'openai-compatible',
   };
