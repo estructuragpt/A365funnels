@@ -1,5 +1,43 @@
-import { describe, it, expect } from 'vitest';
-import { RawOutputSchema } from './agent';
+import { describe, it, expect, vi } from 'vitest';
+
+const { generateTextMock } = vi.hoisted(() => ({ generateTextMock: vi.fn() }));
+vi.mock('ai', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('ai')>();
+  return { ...actual, generateText: (...args: unknown[]) => generateTextMock(...args) };
+});
+
+vi.mock('./skill-loader', () => ({
+  loadSkillCatalog: () => [],
+  buildSkillPrompt: () => '',
+  createLoadSkillTool: () => ({}),
+}));
+
+import { RawOutputSchema, runPageBuilderAgent } from './agent';
+
+it('parses page JSON locally without sending a structured output schema', async () => {
+  generateTextMock.mockReset();
+  generateTextMock.mockResolvedValue({
+    text: JSON.stringify({
+      explanation: 'Listo',
+      content: [{ type: 'HeroPanel', props: { headline: 'Hola' } }],
+      root: { maxWidth: '1080' },
+    }),
+    steps: [], finishReason: 'stop', usage: {},
+  });
+  const result = await runPageBuilderAgent({
+    model: 'fake' as never,
+    componentCatalog: [],
+    messages: [{ role: 'user', content: 'hola' }],
+    systemPrompt: 'Devuelve JSON',
+  });
+  expect(generateTextMock).toHaveBeenCalledOnce();
+  expect(generateTextMock.mock.calls[0][0]).not.toHaveProperty('output');
+  expect(result.object).toEqual({
+    explanation: 'Listo',
+    content: [{ type: 'HeroPanel', props: { headline: 'Hola' } }],
+    root: { maxWidth: '1080' },
+  });
+});
 
 describe('RawOutputSchema', () => {
   const validContent = [

@@ -5,7 +5,6 @@ import {
   generateText,
   streamText,
   stepCountIs,
-  Output,
   type LanguageModel,
   type ModelMessage,
 } from 'ai';
@@ -312,15 +311,15 @@ export async function runPageBuilderAgent(
     return { object: undefined, ...result };
   }
 
-  // No-tools path (OpenAI-compat / Claude w/o tools): keep Output.object for
+  // Component props have arbitrary keys that cannot be expressed in a strict
+  // provider-side JSON schema. Validate the model's JSON locally instead.
   const result = await generateText({
     model,
     system,
     messages,
-    output: Output.object({ schema: RawOutputSchema }),
   });
 
-  const rawObject = result.output as RawAgentOutput | undefined;
+  const rawObject = RawOutputSchema.parse(JSON.parse(result.text.trim()));
   return {
     object: normalizeOutput(rawObject),
     text: result.text ?? '',
