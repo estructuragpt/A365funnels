@@ -23,6 +23,7 @@ the checks we expect on every change, and how to submit a pull request.
 git clone https://github.com/autonnel/autonnel.git
 cd autonnel
 pnpm install
+pnpm exec prisma generate
 pnpm test
 ```
 
@@ -50,7 +51,9 @@ Do not report test-first evidence unless you observed it; CI cannot establish
 when a test was written.
 
 Before a PR, run applicable checks. `test`, `build`, and `test:coverage` are
-`package.json` scripts; the focused command uses the installed Vitest binary:
+`package.json` scripts; the focused command uses the installed Vitest binary.
+After a fresh install or a Prisma schema change, run `pnpm exec prisma generate`
+before focused or full tests (`pnpm test` does not generate Prisma Client):
 
 ```bash
 pnpm test                 # Vitest suite
