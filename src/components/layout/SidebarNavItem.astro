@@ -21,7 +21,7 @@ const isParentActive = activeTop === item.id;
     href={item.href!}
     class={isActive
       ? 'flex items-center gap-2 text-[13.5px] rounded-md px-2.5 py-[7px] bg-ds-card border border-ds-line shadow-[0_1px_2px_rgba(17,24,39,.04)] text-ds-ink no-underline'
-      : 'flex items-center gap-2 text-[13.5px] rounded-md px-2.5 py-[7px] border border-transparent text-[#374151] hover:bg-[#F3F4F6] hover:text-ds-ink no-underline'}
+      : 'flex items-center gap-2 text-[13.5px] rounded-md px-2.5 py-[7px] border border-transparent text-ds-slate hover:bg-ds-surface2 hover:text-ds-ink no-underline'}
     aria-current={isActive ? 'page' : undefined}
   >
     <span class="shrink-0 text-ds-muted" set:html={svg(item.id)} aria-hidden="true"></span>
@@ -33,7 +33,7 @@ const isParentActive = activeTop === item.id;
       type="button"
       class={isParentActive
         ? 'autonnel-sidebar-toggle w-full flex items-center gap-2 text-[13.5px] rounded-md px-2.5 py-[7px] bg-ds-card border border-ds-line shadow-[0_1px_2px_rgba(17,24,39,.04)] text-ds-ink'
-        : 'autonnel-sidebar-toggle w-full flex items-center gap-2 text-[13.5px] rounded-md px-2.5 py-[7px] border border-transparent text-[#374151] hover:bg-[#F3F4F6] hover:text-ds-ink'}
+        : 'autonnel-sidebar-toggle w-full flex items-center gap-2 text-[13.5px] rounded-md px-2.5 py-[7px] border border-transparent text-ds-slate hover:bg-ds-surface2 hover:text-ds-ink'}
       aria-expanded="false"
       aria-controls={`autonnel-sidebar-children-${item.id}`}
     >
@@ -58,7 +58,7 @@ const isParentActive = activeTop === item.id;
         const childActive = activeNav === c.id;
         const cls = childActive
           ? 'flex items-center gap-2 text-[12.5px] rounded-md px-2.5 py-[6px] bg-ds-card border border-ds-line shadow-[0_1px_2px_rgba(17,24,39,.04)] text-ds-ink no-underline'
-          : 'flex items-center gap-2 text-[12.5px] rounded-md px-2.5 py-[6px] border border-transparent text-[#4B5563] hover:bg-[#F3F4F6] hover:text-ds-ink no-underline';
+          : 'flex items-center gap-2 text-[12.5px] rounded-md px-2.5 py-[6px] border border-transparent text-ds-slate hover:bg-ds-surface2 hover:text-ds-ink no-underline';
         return (
           <a href={c.href} class={cls} aria-current={childActive ? 'page' : undefined}>
             <span class="flex-1 truncate">{c.label}</span>

@@ -191,7 +191,7 @@ const expandedFromActive = activeNav && activeNav.includes('.') ? activeTop : ''
           const isActive = activeNav === item.id;
           const cls = isActive
             ? 'flex items-center gap-2 text-[13.5px] rounded-md px-2.5 py-[7px] bg-ds-card border border-ds-line shadow-[0_1px_2px_rgba(17,24,39,.04)] text-ds-ink no-underline'
-            : 'flex items-center gap-2 text-[13.5px] rounded-md px-2.5 py-[7px] border border-transparent text-[#374151] hover:bg-[#F3F4F6] hover:text-ds-ink no-underline';
+            : 'flex items-center gap-2 text-[13.5px] rounded-md px-2.5 py-[7px] border border-transparent text-ds-slate hover:bg-ds-surface2 hover:text-ds-ink no-underline';
           return (
             <a href={item.href} class={cls} aria-current={isActive ? 'page' : undefined}>
               <span class="shrink-0 text-ds-muted" set:html={svg(item.icon || item.id)} aria-hidden="true"></span>
@@ -215,7 +215,7 @@ const expandedFromActive = activeNav && activeNav.includes('.') ? activeTop : ''
             href={item.href}
             target={item.external ? '_blank' : undefined}
             rel={item.external ? 'noopener noreferrer' : undefined}
-            class="flex items-center gap-2 text-[13.5px] rounded-md px-2.5 py-[7px] border border-transparent text-[#374151] hover:bg-[#F3F4F6] hover:text-ds-ink no-underline"
+            class="flex items-center gap-2 text-[13.5px] rounded-md px-2.5 py-[7px] border border-transparent text-ds-slate hover:bg-ds-surface2 hover:text-ds-ink no-underline"
           >
             <span class="shrink-0 text-ds-muted" set:html={svg(item.id)} aria-hidden="true"></span>
             <span class="flex-1 truncate">{item.label}</span>

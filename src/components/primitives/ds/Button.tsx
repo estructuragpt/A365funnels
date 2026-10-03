@@ -9,9 +9,9 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 }
 
 const VARIANT: Record<NonNullable<ButtonProps['variant']>, string> = {
-  default: 'bg-ds-card border border-ds-line text-ds-ink hover:bg-[#F9FAFB]',
+  default: 'bg-ds-card border border-ds-line text-ds-ink hover:bg-ds-surface2',
   primary: 'bg-ds-ink border border-ds-ink text-ds-card hover:bg-[#1F2937]',
-  ghost:   'bg-transparent border border-transparent text-ds-ink hover:bg-[#F3F4F6]',
+  ghost:   'bg-transparent border border-transparent text-ds-ink hover:bg-ds-surface2',
 };
 
 const SIZE: Record<NonNullable<ButtonProps['size']>, string> = {

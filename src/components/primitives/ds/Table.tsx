@@ -47,7 +47,7 @@ export const Th: React.FC<ThProps> = ({ align = 'left', className, scope = 'col'
 export const Td: React.FC<TdProps> = ({ align = 'left', mono, className, ...rest }) => (
   <td
     className={[
-      'px-4 py-3 text-[13.5px] text-ds-ink border-b border-[#F3F4F6]',
+      'px-4 py-3 text-[13.5px] text-ds-ink border-b border-ds-line',
       ALIGN[align],
       mono ? 'font-ds-mono tabular' : '',
       className ?? '',

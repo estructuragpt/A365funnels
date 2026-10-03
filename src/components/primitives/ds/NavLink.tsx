@@ -14,7 +14,7 @@ const NavLink: React.FC<NavLinkProps> = ({ href, icon, count, chip, active, clas
   const base = 'flex items-center gap-2 text-[13.5px] rounded-md px-2.5 py-[7px] transition-colors';
   const state = active
     ? 'bg-ds-card border border-ds-line shadow-[0_1px_2px_rgba(17,24,39,.04)] text-ds-ink'
-    : 'border border-transparent text-[#374151] hover:bg-[#F3F4F6] hover:text-ds-ink';
+    : 'border border-transparent text-ds-slate hover:bg-ds-surface2 hover:text-ds-ink';
   return (
     <a href={href} className={[base, state, className ?? ''].filter(Boolean).join(' ')}>
       {icon && <span className="shrink-0 text-ds-muted [&_svg]:w-4 [&_svg]:h-4">{icon}</span>}
