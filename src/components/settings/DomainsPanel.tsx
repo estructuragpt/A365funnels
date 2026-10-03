@@ -88,11 +88,11 @@ export default function DomainsPanel({ initialDomains }: DomainsPanelProps) {
               <tbody>
                 {domains.map(d => (
                   <tr key={d.id} className="hover:bg-ds-surface2 transition-colors">
-                    <td className="px-4 py-3 text-[13.5px] text-ds-ink border-b border-[#F3F4F6] font-ds-mono tabular">{d.domain}</td>
-                    <td className="px-4 py-3 border-b border-[#F3F4F6]">
+                    <td className="px-4 py-3 text-[13.5px] text-ds-ink border-b border-ds-line font-ds-mono tabular">{d.domain}</td>
+                    <td className="px-4 py-3 border-b border-ds-line">
                       {d.isPrimary ? <DsBadge tone="ok">Primary</DsBadge> : <DsBadge tone="muted">Secondary</DsBadge>}
                     </td>
-                    <td className="px-4 py-3 border-b border-[#F3F4F6] text-right">
+                    <td className="px-4 py-3 border-b border-ds-line text-right">
                       <div className="inline-flex gap-2">
                         {!d.isPrimary && (
                           <DsButton variant="default" size="sm" onClick={() => handleSetPrimary(d.id)}>Set primary</DsButton>

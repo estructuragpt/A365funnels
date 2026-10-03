@@ -269,7 +269,7 @@ export default function UsersPanel({ initialUsers, initialRoles, initialInvitati
               <tbody>
                 {users.map((u) => (
                   <tr key={`u-${u.id}`} className="hover:bg-ds-surface2 transition-colors">
-                    <td className="px-5 py-3 border-b border-[#F3F4F6]">
+                    <td className="px-5 py-3 border-b border-ds-line">
                       <div className="flex items-center gap-3">
                         {u.avatar ? (
                           <img src={u.avatar} alt="" className="w-8 h-8 rounded-full border border-ds-line object-cover" />
@@ -284,7 +284,7 @@ export default function UsersPanel({ initialUsers, initialRoles, initialInvitati
                         </div>
                       </div>
                     </td>
-                    <td className="px-5 py-3 border-b border-[#F3F4F6]">
+                    <td className="px-5 py-3 border-b border-ds-line">
                       <RoleDropdown
                         userId={u.id}
                         currentRoles={u.roles}
@@ -293,13 +293,13 @@ export default function UsersPanel({ initialUsers, initialRoles, initialInvitati
                         onToggle={handleToggleUserRole}
                       />
                     </td>
-                    <td className="px-5 py-3 border-b border-[#F3F4F6]">
+                    <td className="px-5 py-3 border-b border-ds-line">
                       <span className="inline-flex items-center gap-1 text-[11.5px] text-ds-muted">
                         <span className="w-[6px] h-[6px] rounded-full bg-[#16A34A]" />
                         Active
                       </span>
                     </td>
-                    <td className="px-5 py-3 border-b border-[#F3F4F6]" />
+                    <td className="px-5 py-3 border-b border-ds-line" />
                   </tr>
                 ))}
                 {invitations.map((inv) => {
@@ -307,7 +307,7 @@ export default function UsersPanel({ initialUsers, initialRoles, initialInvitati
                   const canRevoke = !inv.acceptedAt;
                   return (
                     <tr key={`inv-${inv.id}`} className="hover:bg-ds-surface2 transition-colors">
-                      <td className="px-5 py-3 border-b border-[#F3F4F6]">
+                      <td className="px-5 py-3 border-b border-ds-line">
                         <div className="flex items-center gap-3">
                           <span className="w-8 h-8 rounded-full bg-ds-surface2 border border-ds-line text-ds-muted flex items-center justify-center shrink-0">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="w-4 h-4">
@@ -321,21 +321,21 @@ export default function UsersPanel({ initialUsers, initialRoles, initialInvitati
                           </div>
                         </div>
                       </td>
-                      <td className="px-5 py-3 border-b border-[#F3F4F6]">
+                      <td className="px-5 py-3 border-b border-ds-line">
                         <span className="text-[12.5px] text-ds-ink">{inv.role}</span>
                       </td>
-                      <td className="px-5 py-3 border-b border-[#F3F4F6]">
+                      <td className="px-5 py-3 border-b border-ds-line">
                         <span className={`inline-flex items-center rounded-full border px-2 py-[3px] text-[11.5px] font-medium leading-none ${toneClasses(status.tone)}`}>
                           {status.label}
                         </span>
                       </td>
-                      <td className="px-5 py-3 border-b border-[#F3F4F6] text-right">
+                      <td className="px-5 py-3 border-b border-ds-line text-right">
                         <div className="inline-flex items-center gap-1.5 justify-end">
                           {!inv.acceptedAt && (
                             <button
                               type="button"
                               onClick={() => copyInviteLink(inv.token)}
-                              className="inline-flex items-center justify-center font-medium rounded-[6px] h-7 px-2.5 text-[12px] bg-ds-card border border-ds-line text-ds-ink hover:bg-[#F9FAFB]"
+                              className="inline-flex items-center justify-center font-medium rounded-[6px] h-7 px-2.5 text-[12px] bg-ds-card border border-ds-line text-ds-ink hover:bg-ds-surface2"
                             >
                               Copy link
                             </button>

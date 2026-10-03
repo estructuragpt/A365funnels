@@ -156,33 +156,33 @@ export default function CustomCodeManager({ initialScripts }: CustomCodeManagerP
               <tbody>
                 {scripts.map(script => (
                   <tr key={script.id} className={`hover:bg-ds-surface2 transition-colors ${script.enabled ? '' : 'opacity-60'}`}>
-                    <td className="px-4 py-3 border-b border-[#F3F4F6]">
+                    <td className="px-4 py-3 border-b border-ds-line">
                       <Checkbox
                         checked={script.enabled}
                         onChange={e => handleToggleScript(script.id, e.target.checked)}
                         aria-label={`Toggle ${script.name}`}
                       />
                     </td>
-                    <td className="px-4 py-3 text-[13.5px] text-ds-ink border-b border-[#F3F4F6]">
+                    <td className="px-4 py-3 text-[13.5px] text-ds-ink border-b border-ds-line">
                       <div className="font-medium">{script.name}</div>
                       {!script.enabled && (
                         <div className="mt-0.5"><DsBadge tone="muted">Disabled</DsBadge></div>
                       )}
                     </td>
-                    <td className="px-4 py-3 border-b border-[#F3F4F6]">
+                    <td className="px-4 py-3 border-b border-ds-line">
                       <DsBadge tone="muted"><span className="font-ds-mono tabular">{getPositionLabel(script.position)}</span></DsBadge>
                     </td>
-                    <td className="px-4 py-3 border-b border-[#F3F4F6] max-w-[360px]">
+                    <td className="px-4 py-3 border-b border-ds-line max-w-[360px]">
                       <code className="text-[11.5px] text-ds-slate font-ds-mono tabular truncate block">
                         {script.content.slice(0, 120)}{script.content.length > 120 ? '…' : ''}
                       </code>
                     </td>
-                    <td className="px-4 py-3 border-b border-[#F3F4F6] text-right">
+                    <td className="px-4 py-3 border-b border-ds-line text-right">
                       <div className="inline-flex gap-2">
                         <button
                           type="button"
                           onClick={() => openEditModal(script)}
-                          className="inline-flex items-center justify-center rounded-[7px] h-7 w-7 bg-ds-card border border-ds-line text-ds-muted hover:text-ds-ink hover:bg-[#F9FAFB]"
+                          className="inline-flex items-center justify-center rounded-[7px] h-7 w-7 bg-ds-card border border-ds-line text-ds-muted hover:text-ds-ink hover:bg-ds-surface2"
                           aria-label="Edit"
                         >
                           <Pencil className="w-3.5 h-3.5" />

@@ -229,7 +229,7 @@ export default function NewAdsPlatformModal({ platforms }: NewAdsPlatformModalPr
             <button
               type="button"
               onClick={close}
-              className="inline-flex items-center justify-center font-medium rounded-[7px] h-8 px-3 text-[13px] bg-ds-card border border-ds-line text-ds-ink hover:bg-[#F9FAFB]"
+              className="inline-flex items-center justify-center font-medium rounded-[7px] h-8 px-3 text-[13px] bg-ds-card border border-ds-line text-ds-ink hover:bg-ds-surface2"
             >
               Cancel
             </button>

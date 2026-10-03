@@ -94,7 +94,7 @@ export default function ApiKeysPanel({ initialKeys }: ApiKeysPanelProps) {
             <button
               type="button"
               onClick={() => setRevealedKey(null)}
-              className="inline-flex items-center justify-center font-medium rounded-[7px] h-8 px-3 text-[13px] bg-ds-card border border-ds-line text-ds-ink hover:bg-[#F9FAFB]"
+              className="inline-flex items-center justify-center font-medium rounded-[7px] h-8 px-3 text-[13px] bg-ds-card border border-ds-line text-ds-ink hover:bg-ds-surface2"
             >
               Dismiss
             </button>
@@ -119,7 +119,7 @@ export default function ApiKeysPanel({ initialKeys }: ApiKeysPanelProps) {
               type="button"
               onClick={() => setShowCreate(false)}
               disabled={creating}
-              className="inline-flex items-center justify-center font-medium rounded-[7px] h-8 px-3 text-[13px] bg-ds-card border border-ds-line text-ds-ink hover:bg-[#F9FAFB]"
+              className="inline-flex items-center justify-center font-medium rounded-[7px] h-8 px-3 text-[13px] bg-ds-card border border-ds-line text-ds-ink hover:bg-ds-surface2"
             >
               Cancel
             </button>
@@ -168,21 +168,21 @@ export default function ApiKeysPanel({ initialKeys }: ApiKeysPanelProps) {
             <tbody>
               {keys.map((k) => (
                 <tr key={k.id} className="hover:bg-ds-surface2 transition-colors">
-                  <td className="px-4 py-3 text-[13.5px] text-ds-ink border-b border-[#F3F4F6]">{k.name}</td>
-                  <td className="px-4 py-3 text-[12.5px] text-ds-slate border-b border-[#F3F4F6] font-ds-mono tabular">
+                  <td className="px-4 py-3 text-[13.5px] text-ds-ink border-b border-ds-line">{k.name}</td>
+                  <td className="px-4 py-3 text-[12.5px] text-ds-slate border-b border-ds-line font-ds-mono tabular">
                     {k.key.includes('…') ? k.key : maskKey(k.key)}
                   </td>
-                  <td className="px-4 py-3 border-b border-[#F3F4F6]">
+                  <td className="px-4 py-3 border-b border-ds-line">
                     <Switch
                       checked={k.writeAccess}
                       onCheckedChange={() => handleToggleWrite(k.id, k.writeAccess)}
                       aria-label={`Write access for ${k.name}`}
                     />
                   </td>
-                  <td className="px-4 py-3 text-[12.5px] text-ds-muted border-b border-[#F3F4F6] text-right font-ds-mono tabular">
+                  <td className="px-4 py-3 text-[12.5px] text-ds-muted border-b border-ds-line text-right font-ds-mono tabular">
                     {new Date(k.createdAt).toLocaleDateString()}
                   </td>
-                  <td className="px-4 py-3 border-b border-[#F3F4F6] text-right">
+                  <td className="px-4 py-3 border-b border-ds-line text-right">
                     <button
                       type="button"
                       onClick={() => handleDelete(k.id)}

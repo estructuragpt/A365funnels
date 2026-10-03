@@ -175,7 +175,7 @@ export default function CreatePageModal({
             type="button"
             data-testid={`editor-card-${card.value}`}
             onClick={() => setChoice(card.value)}
-            className="text-left p-4 rounded-[10px] border border-ds-line bg-ds-card hover:border-ds-slate hover:bg-[#F9FAFB] transition-colors cursor-pointer"
+            className="text-left p-4 rounded-[10px] border border-ds-line bg-ds-card hover:border-ds-slate hover:bg-ds-surface2 transition-colors cursor-pointer"
           >
             <div className="mb-3 w-full" style={{ aspectRatio: '7 / 2' }}>
               {card.preview}
@@ -200,7 +200,7 @@ export default function CreatePageModal({
         <button
           type="button"
           onClick={onClose}
-          className="inline-flex items-center justify-center font-medium rounded-[7px] h-8 px-3 text-[13px] bg-ds-card border border-ds-line text-ds-ink hover:bg-[#F9FAFB]"
+          className="inline-flex items-center justify-center font-medium rounded-[7px] h-8 px-3 text-[13px] bg-ds-card border border-ds-line text-ds-ink hover:bg-ds-surface2"
         >
           Cancel
         </button>

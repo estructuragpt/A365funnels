@@ -220,7 +220,7 @@ const emptyStateHint = adsPlatformNames.length <= 1
                     </div>
                     <a
                       href={`/marketing/${p.id}`}
-                      class="inline-flex items-center justify-center font-medium rounded-[6px] h-7 px-3 text-[12px] bg-ds-card border border-ds-line text-ds-ink hover:bg-[#F9FAFB] no-underline"
+                      class="inline-flex items-center justify-center font-medium rounded-[6px] h-7 px-3 text-[12px] bg-ds-card border border-ds-line text-ds-ink hover:bg-ds-surface2 no-underline"
                     >
                       Manage
                     </a>
@@ -256,7 +256,7 @@ const emptyStateHint = adsPlatformNames.length <= 1
             </select>
             <button
               type="submit"
-              class="inline-flex items-center justify-center font-medium rounded-[7px] h-8 px-3 text-[13px] gap-2 bg-ds-card border border-ds-line text-ds-ink hover:bg-[#F9FAFB]"
+              class="inline-flex items-center justify-center font-medium rounded-[7px] h-8 px-3 text-[13px] gap-2 bg-ds-card border border-ds-line text-ds-ink hover:bg-ds-surface2"
             >
               Filter
             </button>
@@ -284,12 +284,12 @@ const emptyStateHint = adsPlatformNames.length <= 1
               <tbody>
                 {postbacks.rows.map((r) => (
                   <tr class="hover:bg-ds-surface2 transition-colors">
-                    <td class="px-4 py-3 border-b border-[#F3F4F6]">
+                    <td class="px-4 py-3 border-b border-ds-line">
                       <span class={`inline-flex items-center gap-1.5 rounded-full border px-2 py-[3px] text-[11.5px] font-medium leading-none ${statusBadgeClasses(postbackStatusTone(r.status))}`}>
                         {r.status}
                       </span>
                     </td>
-                    <td class="px-4 py-3 text-[13.5px] border-b border-[#F3F4F6]">
+                    <td class="px-4 py-3 text-[13.5px] border-b border-ds-line">
                       <a
                         href={`/marketing/${r.platformId}`}
                         class="text-ds-accent no-underline hover:underline"
@@ -300,7 +300,7 @@ const emptyStateHint = adsPlatformNames.length <= 1
                         {platformLabel(r.platformType)}
                       </div>
                     </td>
-                    <td class="px-4 py-3 text-[13.5px] border-b border-[#F3F4F6]">
+                    <td class="px-4 py-3 text-[13.5px] border-b border-ds-line">
                       {r.orderId && r.orderNumber ? (
                         <a
                           href={`/orders/${r.orderId}`}
@@ -312,7 +312,7 @@ const emptyStateHint = adsPlatformNames.length <= 1
                         <span class="text-ds-faint">—</span>
                       )}
                     </td>
-                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-[#F3F4F6]">
+                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-ds-line">
                       <div class="font-ds-mono tabular text-[12.5px] truncate max-w-[200px]" title={r.eventName}>
                         {r.eventName}
                       </div>
@@ -322,10 +322,10 @@ const emptyStateHint = adsPlatformNames.length <= 1
                         </div>
                       )}
                     </td>
-                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-[#F3F4F6] text-right font-ds-mono tabular">
+                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-ds-line text-right font-ds-mono tabular">
                       {r.attempts}
                     </td>
-                    <td class="px-4 py-3 text-[12.5px] text-ds-slate border-b border-[#F3F4F6]">
+                    <td class="px-4 py-3 text-[12.5px] text-ds-slate border-b border-ds-line">
                       {r.errorMessage ? (
                         <div class="truncate max-w-[260px]" title={r.errorMessage}>
                           {truncate(r.errorMessage, 80)}
@@ -334,7 +334,7 @@ const emptyStateHint = adsPlatformNames.length <= 1
                         <span class="text-ds-faint">—</span>
                       )}
                     </td>
-                    <td class="px-4 py-3 text-[12.5px] text-ds-muted border-b border-[#F3F4F6] text-right font-ds-mono tabular whitespace-nowrap">
+                    <td class="px-4 py-3 text-[12.5px] text-ds-muted border-b border-ds-line text-right font-ds-mono tabular whitespace-nowrap">
                       {relativeTime(r.createdAt, now)}
                     </td>
                   </tr>
@@ -351,12 +351,12 @@ const emptyStateHint = adsPlatformNames.length <= 1
             </div>
             <div class="flex items-center gap-1">
               {page > 1 ? (
-                <a href={pageHref(page - 1)} class="inline-flex items-center justify-center rounded-[6px] h-7 px-2 text-[12px] bg-ds-card border border-ds-line text-ds-ink hover:bg-[#F9FAFB] no-underline">Prev</a>
+                <a href={pageHref(page - 1)} class="inline-flex items-center justify-center rounded-[6px] h-7 px-2 text-[12px] bg-ds-card border border-ds-line text-ds-ink hover:bg-ds-surface2 no-underline">Prev</a>
               ) : (
                 <span class="inline-flex items-center justify-center rounded-[6px] h-7 px-2 text-[12px] bg-ds-card border border-ds-line text-ds-faint">Prev</span>
               )}
               {page < totalPages ? (
-                <a href={pageHref(page + 1)} class="inline-flex items-center justify-center rounded-[6px] h-7 px-2 text-[12px] bg-ds-card border border-ds-line text-ds-ink hover:bg-[#F9FAFB] no-underline">Next</a>
+                <a href={pageHref(page + 1)} class="inline-flex items-center justify-center rounded-[6px] h-7 px-2 text-[12px] bg-ds-card border border-ds-line text-ds-ink hover:bg-ds-surface2 no-underline">Next</a>
               ) : (
                 <span class="inline-flex items-center justify-center rounded-[6px] h-7 px-2 text-[12px] bg-ds-card border border-ds-line text-ds-faint">Next</span>
               )}
@@ -392,7 +392,7 @@ const emptyStateHint = adsPlatformNames.length <= 1
               <tbody>
                 {bindings.map((g) => (
                   <tr class="hover:bg-ds-surface2 transition-colors">
-                    <td class="px-4 py-3 border-b border-[#F3F4F6]">
+                    <td class="px-4 py-3 border-b border-ds-line">
                       <a
                         href={`/funnel/${g.funnelId}/marketing`}
                         class="text-[13.5px] text-ds-ink no-underline hover:text-ds-accent"
@@ -400,7 +400,7 @@ const emptyStateHint = adsPlatformNames.length <= 1
                         {g.funnelName}
                       </a>
                     </td>
-                    <td class="px-4 py-3 border-b border-[#F3F4F6]">
+                    <td class="px-4 py-3 border-b border-ds-line">
                       <div class="flex items-center gap-1.5 flex-wrap">
                         {g.platforms.map((p) => (
                           <a
@@ -413,7 +413,7 @@ const emptyStateHint = adsPlatformNames.length <= 1
                         ))}
                       </div>
                     </td>
-                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-[#F3F4F6] text-right font-ds-mono tabular">
+                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-ds-line text-right font-ds-mono tabular">
                       {g.platforms.length}
                     </td>
                   </tr>

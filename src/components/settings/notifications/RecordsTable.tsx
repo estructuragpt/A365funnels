@@ -136,7 +136,7 @@ export default function RecordsTable() {
                   return (
                     <React.Fragment key={row.id}>
                       <tr
-                        className="border-b border-ds-line cursor-pointer hover:bg-[#F9FAFB]"
+                        className="border-b border-ds-line cursor-pointer hover:bg-ds-surface2"
                         onClick={() => setExpanded(isOpen ? null : row.id)}
                       >
                         <td className="px-2 py-1.5 whitespace-nowrap">{new Date(row.createdAt).toLocaleString()}</td>

@@ -154,7 +154,7 @@ const maxStepCount = steps.reduce((m, s) => Math.max(m, s.count), 0) || 1;
                   class={cn(
                     "af-preset px-3 text-[12.5px] font-medium",
                     i > 0 && "border-l border-ds-line",
-                    timeWindow.range === r ? "bg-ds-ink text-ds-card" : "bg-ds-card text-ds-slate hover:bg-[#F9FAFB]",
+                    timeWindow.range === r ? "bg-ds-ink text-ds-card" : "bg-ds-card text-ds-slate hover:bg-ds-surface2",
                   )}
                 >{r}</button>
               ))}
@@ -200,7 +200,7 @@ const maxStepCount = steps.reduce((m, s) => Math.max(m, s.count), 0) || 1;
         </div>
         <a
           href={funnelId ? `/funnel/${funnelId}/analytics` : '/funnels'}
-          class="inline-flex items-center justify-center font-medium rounded-[6px] h-7 px-3 text-[12px] bg-ds-card border border-ds-line text-ds-ink hover:bg-[#F9FAFB] no-underline"
+          class="inline-flex items-center justify-center font-medium rounded-[6px] h-7 px-3 text-[12px] bg-ds-card border border-ds-line text-ds-ink hover:bg-ds-surface2 no-underline"
         >
           {funnelId ? 'Detailed view' : 'Choose funnel'}
         </a>
@@ -261,11 +261,11 @@ const maxStepCount = steps.reduce((m, s) => Math.max(m, s.count), 0) || 1;
                 const tone = m.successRate >= 80 ? 'ok' : m.successRate >= 50 ? 'warn' : 'bad';
                 return (
                   <tr class="hover:bg-ds-surface2 transition-colors">
-                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-[#F3F4F6]">{m.label}</td>
-                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-[#F3F4F6] text-right font-ds-mono tabular">{formatNumber(m.submits)}</td>
-                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-[#F3F4F6] text-right font-ds-mono tabular">{formatNumber(m.successes)}</td>
-                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-[#F3F4F6] text-right font-ds-mono tabular">{formatNumber(m.failures)}</td>
-                    <td class="px-4 py-3 border-b border-[#F3F4F6] text-right">
+                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-ds-line">{m.label}</td>
+                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-ds-line text-right font-ds-mono tabular">{formatNumber(m.submits)}</td>
+                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-ds-line text-right font-ds-mono tabular">{formatNumber(m.successes)}</td>
+                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-ds-line text-right font-ds-mono tabular">{formatNumber(m.failures)}</td>
+                    <td class="px-4 py-3 border-b border-ds-line text-right">
                       <span class={`inline-flex items-center gap-1.5 rounded-full border px-2 py-[2px] text-[11.5px] font-medium leading-none ${statusBadgeClasses(tone)}`}>
                         <span class="font-ds-mono tabular">{formatPercent(m.successRate, 1)}</span>
                       </span>
@@ -305,14 +305,14 @@ const maxStepCount = steps.reduce((m, s) => Math.max(m, s.count), 0) || 1;
                 const cvr = t.visits > 0 ? (t.orders / t.visits) * 100 : 0;
                 return (
                   <tr class="hover:bg-ds-surface2 transition-colors">
-                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-[#F3F4F6]">
+                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-ds-line">
                       <div class="font-medium">{t.label}</div>
                       <div class="text-[11px] text-ds-faint font-ds-mono tabular truncate">{t.source}</div>
                     </td>
-                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-[#F3F4F6] text-right font-ds-mono tabular">{formatNumber(t.visits)}</td>
-                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-[#F3F4F6] text-right font-ds-mono tabular">{formatNumber(t.orders)}</td>
-                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-[#F3F4F6] text-right font-ds-mono tabular">{formatMoney(t.revenue)}</td>
-                    <td class="px-4 py-3 text-[12.5px] text-ds-slate border-b border-[#F3F4F6] text-right font-ds-mono tabular">{formatPercent(cvr, 1)}</td>
+                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-ds-line text-right font-ds-mono tabular">{formatNumber(t.visits)}</td>
+                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-ds-line text-right font-ds-mono tabular">{formatNumber(t.orders)}</td>
+                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-ds-line text-right font-ds-mono tabular">{formatMoney(t.revenue)}</td>
+                    <td class="px-4 py-3 text-[12.5px] text-ds-slate border-b border-ds-line text-right font-ds-mono tabular">{formatPercent(cvr, 1)}</td>
                   </tr>
                 );
               })}

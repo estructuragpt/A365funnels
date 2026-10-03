@@ -133,7 +133,7 @@ const totalPages = Math.max(1, result.totalPages || Math.ceil(result.total / per
           <input type="text" name="provider" value={provider} placeholder="Provider" class={cn(dsFieldClass, "h-8 w-[120px]")} />
           <input type="date" name="from" value={dateFrom} class={cn(dsFieldClass, "h-8 w-auto")} />
           <input type="date" name="to" value={dateTo} class={cn(dsFieldClass, "h-8 w-auto")} />
-          <button type="submit" class="inline-flex items-center justify-center font-medium rounded-[7px] h-8 px-3 text-[13px] gap-2 bg-ds-card border border-ds-line text-ds-ink hover:bg-[#F9FAFB]">
+          <button type="submit" class="inline-flex items-center justify-center font-medium rounded-[7px] h-8 px-3 text-[13px] gap-2 bg-ds-card border border-ds-line text-ds-ink hover:bg-ds-surface2">
             Filter
           </button>
         </form>
@@ -160,33 +160,33 @@ const totalPages = Math.max(1, result.totalPages || Math.ceil(result.total / per
                 const tone = statusTone(t.status);
                 return (
                   <tr class="hover:bg-ds-surface2 transition-colors">
-                    <td class="px-4 py-3 border-b border-[#F3F4F6]">
+                    <td class="px-4 py-3 border-b border-ds-line">
                       <span class={`inline-flex items-center gap-1.5 rounded-full border px-2 py-[3px] text-[11.5px] font-medium leading-none ${t.type === 'REFUND' ? 'bg-orange-50 border-orange-200 text-orange-700' : 'bg-blue-50 border-blue-200 text-blue-700'}`}>
                         {t.type}
                       </span>
                     </td>
-                    <td class="px-4 py-3 border-b border-[#F3F4F6]">
+                    <td class="px-4 py-3 border-b border-ds-line">
                       <span class={`inline-flex items-center gap-1.5 rounded-full border px-2 py-[3px] text-[11.5px] font-medium leading-none ${badgeClasses(tone)}`}>
                         {t.status}
                       </span>
                     </td>
-                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-[#F3F4F6] text-right font-ds-mono tabular">
+                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-ds-line text-right font-ds-mono tabular">
                       {fmtAmount(t.amountMinor, t.currencyCode)}
                     </td>
-                    <td class="px-4 py-3 text-[13px] text-ds-slate border-b border-[#F3F4F6] font-ds-mono">
+                    <td class="px-4 py-3 text-[13px] text-ds-slate border-b border-ds-line font-ds-mono">
                       {t.provider}
                     </td>
-                    <td class="px-4 py-3 text-[12.5px] text-ds-muted border-b border-[#F3F4F6] font-ds-mono tabular truncate max-w-[200px]" title={t.providerRefundRef ?? ''}>
+                    <td class="px-4 py-3 text-[12.5px] text-ds-muted border-b border-ds-line font-ds-mono tabular truncate max-w-[200px]" title={t.providerRefundRef ?? ''}>
                       {t.providerRefundRef ?? '—'}
                     </td>
-                    <td class="px-4 py-3 text-[12.5px] border-b border-[#F3F4F6] font-ds-mono tabular">
+                    <td class="px-4 py-3 text-[12.5px] border-b border-ds-line font-ds-mono tabular">
                       {t.parentTransactionId && orderByPi.get(t.parentTransactionId) ? (
                         <a href={`/orders/${orderByPi.get(t.parentTransactionId)!.orderId}`} class="text-ds-ink hover:underline no-underline">{orderByPi.get(t.parentTransactionId)!.orderNumber}</a>
                       ) : (
                         <span class="text-ds-muted">—</span>
                       )}
                     </td>
-                    <td class="px-4 py-3 text-[12.5px] text-ds-muted border-b border-[#F3F4F6] text-right font-ds-mono tabular whitespace-nowrap">
+                    <td class="px-4 py-3 text-[12.5px] text-ds-muted border-b border-ds-line text-right font-ds-mono tabular whitespace-nowrap">
                       {new Date(t.createdAt).toLocaleString()}
                     </td>
                   </tr>
@@ -204,12 +204,12 @@ const totalPages = Math.max(1, result.totalPages || Math.ceil(result.total / per
           </div>
           <div class="flex items-center gap-1">
             {page > 1 ? (
-              <a href={pageHref(page - 1)} class="inline-flex items-center justify-center rounded-[6px] h-7 px-2 text-[12px] bg-ds-card border border-ds-line text-ds-ink hover:bg-[#F9FAFB] no-underline">Prev</a>
+              <a href={pageHref(page - 1)} class="inline-flex items-center justify-center rounded-[6px] h-7 px-2 text-[12px] bg-ds-card border border-ds-line text-ds-ink hover:bg-ds-surface2 no-underline">Prev</a>
             ) : (
               <span class="inline-flex items-center justify-center rounded-[6px] h-7 px-2 text-[12px] bg-ds-card border border-ds-line text-ds-faint">Prev</span>
             )}
             {page < totalPages ? (
-              <a href={pageHref(page + 1)} class="inline-flex items-center justify-center rounded-[6px] h-7 px-2 text-[12px] bg-ds-card border border-ds-line text-ds-ink hover:bg-[#F9FAFB] no-underline">Next</a>
+              <a href={pageHref(page + 1)} class="inline-flex items-center justify-center rounded-[6px] h-7 px-2 text-[12px] bg-ds-card border border-ds-line text-ds-ink hover:bg-ds-surface2 no-underline">Next</a>
             ) : (
               <span class="inline-flex items-center justify-center rounded-[6px] h-7 px-2 text-[12px] bg-ds-card border border-ds-line text-ds-faint">Next</span>
             )}

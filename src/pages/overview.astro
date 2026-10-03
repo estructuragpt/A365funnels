@@ -91,7 +91,7 @@ function tokenColor(tone: 'ok' | 'bad' | 'muted' | 'highlight') {
     slot="header-actions"
     type="button"
     onclick="window.location.reload()"
-    class="inline-flex items-center justify-center font-medium rounded-[7px] h-8 px-3 text-[13px] gap-2 bg-ds-card border border-ds-line text-ds-ink hover:bg-[#F9FAFB]"
+    class="inline-flex items-center justify-center font-medium rounded-[7px] h-8 px-3 text-[13px] gap-2 bg-ds-card border border-ds-line text-ds-ink hover:bg-ds-surface2"
   >
     Refresh
   </button>
@@ -201,7 +201,7 @@ function tokenColor(tone: 'ok' | 'bad' | 'muted' | 'highlight') {
           </div>
         </div>
         <div class="flex items-center gap-2 shrink-0">
-          <a href="/api/funnel/export?format=csv" class="inline-flex items-center justify-center font-medium rounded-[7px] h-7 px-2.5 text-[12px] gap-1.5 bg-ds-card border border-ds-line text-ds-ink hover:bg-[#F9FAFB] no-underline">
+          <a href="/api/funnel/export?format=csv" class="inline-flex items-center justify-center font-medium rounded-[7px] h-7 px-2.5 text-[12px] gap-1.5 bg-ds-card border border-ds-line text-ds-ink hover:bg-ds-surface2 no-underline">
             Export CSV
           </a>
         </div>
@@ -225,7 +225,7 @@ function tokenColor(tone: 'ok' | 'bad' | 'muted' | 'highlight') {
             <tbody>
               {data.funnels.rows.map((f) => (
                 <tr class="hover:bg-ds-surface2 transition-colors">
-                  <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-[#F3F4F6]">
+                  <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-ds-line">
                     <div class="flex items-center gap-2">
                       <span class="inline-block w-[7px] h-[7px] rounded-full shrink-0" style={dotStyle(f.needsRetry ? 'warn' : 'ok')} aria-hidden="true"></span>
                       <div class="min-w-0">
@@ -233,16 +233,16 @@ function tokenColor(tone: 'ok' | 'bad' | 'muted' | 'highlight') {
                       </div>
                     </div>
                   </td>
-                  <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-[#F3F4F6]">
+                  <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-ds-line">
                     <span class="inline-flex items-center gap-1 rounded-[6px] border px-1.5 py-[1px] text-[11.5px] font-medium leading-tight bg-[#ECFDF5] border-[#A7F3D0] text-[#047857]">
                       {f.runtime}
                     </span>
                   </td>
-                  <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-[#F3F4F6] text-right font-ds-mono tabular">
+                  <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-ds-line text-right font-ds-mono tabular">
                     {f.visits24h.toLocaleString()} v · {f.orders24h.toLocaleString()} o
                   </td>
-                  <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-[#F3F4F6] text-right font-ds-mono tabular">{f.conv}</td>
-                  <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-[#F3F4F6] text-right">
+                  <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-ds-line text-right font-ds-mono tabular">{f.conv}</td>
+                  <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-ds-line text-right">
                     <span class={`inline-flex items-center gap-1.5 rounded-full border px-2 py-[2px] text-[11.5px] font-medium leading-none ${badgeClasses(f.needsRetry ? 'warn' : 'ok')}`}>
                       <span class="inline-block w-[7px] h-[7px] rounded-full shrink-0" style={dotStyle(f.needsRetry ? 'warn' : 'ok')} aria-hidden="true"></span>
                       {f.needsRetry ? 'Retry postback' : 'Stable'}
@@ -316,7 +316,7 @@ function tokenColor(tone: 'ok' | 'bad' | 'muted' | 'highlight') {
         </div>
         <a
           href="/orders?recall=1"
-          class="inline-flex items-center justify-center font-medium rounded-[7px] h-7 px-2.5 text-[12px] gap-1.5 bg-ds-card border border-ds-line text-ds-ink hover:bg-[#F9FAFB] no-underline"
+          class="inline-flex items-center justify-center font-medium rounded-[7px] h-7 px-2.5 text-[12px] gap-1.5 bg-ds-card border border-ds-line text-ds-ink hover:bg-ds-surface2 no-underline"
         >
           View →
         </a>
@@ -365,7 +365,7 @@ function tokenColor(tone: 'ok' | 'bad' | 'muted' | 'highlight') {
         </div>
         <a
           href="/settings/notifications"
-          class="inline-flex items-center justify-center font-medium rounded-[7px] h-7 px-2.5 text-[12px] gap-1.5 bg-ds-card border border-ds-line text-ds-ink hover:bg-[#F9FAFB] no-underline"
+          class="inline-flex items-center justify-center font-medium rounded-[7px] h-7 px-2.5 text-[12px] gap-1.5 bg-ds-card border border-ds-line text-ds-ink hover:bg-ds-surface2 no-underline"
         >
           View settings →
         </a>
@@ -401,7 +401,7 @@ function tokenColor(tone: 'ok' | 'bad' | 'muted' | 'highlight') {
             {integrations.length} connections · {attention} require attention
           </div>
         </div>
-        <a href="/settings" class="inline-flex items-center justify-center font-medium rounded-[7px] h-7 px-2.5 text-[12px] gap-1.5 bg-ds-card border border-ds-line text-ds-ink hover:bg-[#F9FAFB] no-underline">
+        <a href="/settings" class="inline-flex items-center justify-center font-medium rounded-[7px] h-7 px-2.5 text-[12px] gap-1.5 bg-ds-card border border-ds-line text-ds-ink hover:bg-ds-surface2 no-underline">
           Manage
         </a>
       </div>

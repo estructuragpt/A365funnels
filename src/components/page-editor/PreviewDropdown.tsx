@@ -68,7 +68,7 @@ export function PreviewDropdown({ slug, canDiscard = false, discarding = false, 
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="inline-flex items-center gap-1.5 h-7 px-2.5 rounded-[7px] text-[12px] font-medium border border-ds-line bg-ds-card text-ds-ink hover:bg-[#F9FAFB]"
+        className="inline-flex items-center gap-1.5 h-7 px-2.5 rounded-[7px] text-[12px] font-medium border border-ds-line bg-ds-card text-ds-ink hover:bg-ds-surface2"
         aria-haspopup="menu"
         aria-expanded={open}
       >
@@ -87,7 +87,7 @@ export function PreviewDropdown({ slug, canDiscard = false, discarding = false, 
             type="button"
             role="menuitem"
             onClick={openPreview}
-            className="w-full text-left px-3 py-2 text-[12.5px] text-ds-ink hover:bg-[#F9FAFB]"
+            className="w-full text-left px-3 py-2 text-[12.5px] text-ds-ink hover:bg-ds-surface2"
           >
             <div className="font-medium">Preview</div>
             <div className="text-[11px] text-ds-muted truncate">{previewUrl}</div>
@@ -99,7 +99,7 @@ export function PreviewDropdown({ slug, canDiscard = false, discarding = false, 
             disabled={!storefrontUrl}
             title={storefrontTitle}
             className={`w-full text-left px-3 py-2 text-[12.5px] ${
-              storefrontUrl ? 'text-ds-ink hover:bg-[#F9FAFB]' : 'text-ds-faint cursor-not-allowed'
+              storefrontUrl ? 'text-ds-ink hover:bg-ds-surface2' : 'text-ds-faint cursor-not-allowed'
             }`}
           >
             <div className="font-medium">Storefront view</div>

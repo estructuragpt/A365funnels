@@ -105,18 +105,18 @@ function rangeButtonClasses(key: RangeKey): string {
           <tbody>
             {activity.map((entry) => (
               <tr class="hover:bg-ds-surface2 transition-colors">
-                <td class="px-4 py-3 text-[12.5px] text-ds-muted border-b border-[#F3F4F6] font-ds-mono tabular whitespace-nowrap">
+                <td class="px-4 py-3 text-[12.5px] text-ds-muted border-b border-ds-line font-ds-mono tabular whitespace-nowrap">
                   {relativeTime(entry.ts, now)}
                 </td>
-                <td class="px-4 py-3 border-b border-[#F3F4F6]">
+                <td class="px-4 py-3 border-b border-ds-line">
                   <span class={`inline-flex items-center gap-1.5 rounded-full border px-2 py-[3px] text-[11.5px] font-medium leading-none ${toneChipClasses(entry.tone)}`}>
                     {entry.kind}
                   </span>
                 </td>
-                <td class="px-4 py-3 text-[13px] text-ds-ink border-b border-[#F3F4F6]">
+                <td class="px-4 py-3 text-[13px] text-ds-ink border-b border-ds-line">
                   <div class="truncate max-w-[480px]" title={entry.text}>{entry.text}</div>
                 </td>
-                <td class="px-4 py-3 text-[12.5px] text-ds-slate border-b border-[#F3F4F6] font-ds-mono tabular">
+                <td class="px-4 py-3 text-[12.5px] text-ds-slate border-b border-ds-line font-ds-mono tabular">
                   <div class="truncate max-w-[320px]" title={entry.payload}>{entry.payload}</div>
                 </td>
               </tr>

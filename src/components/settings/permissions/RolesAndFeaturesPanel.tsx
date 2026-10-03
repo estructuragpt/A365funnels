@@ -197,7 +197,7 @@ export default function RolesAndFeaturesPanel({
                     type="button"
                     onClick={() => setCreating(false)}
                     disabled={savingRole}
-                    className="inline-flex items-center justify-center font-medium rounded-[6px] h-7 px-2.5 text-[12px] bg-ds-card border border-ds-line text-ds-ink hover:bg-[#F9FAFB]"
+                    className="inline-flex items-center justify-center font-medium rounded-[6px] h-7 px-2.5 text-[12px] bg-ds-card border border-ds-line text-ds-ink hover:bg-ds-surface2"
                   >
                     Cancel
                   </button>

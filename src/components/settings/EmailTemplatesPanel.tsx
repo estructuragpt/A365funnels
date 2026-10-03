@@ -47,21 +47,21 @@ export default function EmailTemplatesPanel({ initialTemplates }: EmailTemplates
               <tbody>
                 {templates.map((t) => (
                   <tr key={t.type} className="hover:bg-ds-surface2 transition-colors">
-                    <td className="px-4 py-3 text-[13px] text-ds-slate border-b border-[#F3F4F6] font-ds-mono">
+                    <td className="px-4 py-3 text-[13px] text-ds-slate border-b border-ds-line font-ds-mono">
                       {t.type}
                     </td>
-                    <td className="px-4 py-3 text-[13.5px] text-ds-ink border-b border-[#F3F4F6]">{t.name}</td>
-                    <td className="px-4 py-3 text-[13px] text-ds-muted border-b border-[#F3F4F6] truncate max-w-[320px]">
+                    <td className="px-4 py-3 text-[13.5px] text-ds-ink border-b border-ds-line">{t.name}</td>
+                    <td className="px-4 py-3 text-[13px] text-ds-muted border-b border-ds-line truncate max-w-[320px]">
                       {t.subject || '—'}
                     </td>
-                    <td className="px-4 py-3 border-b border-[#F3F4F6]">
+                    <td className="px-4 py-3 border-b border-ds-line">
                       {t.isCustomized ? (
                         <DsBadge tone="ok">Customized</DsBadge>
                       ) : (
                         <DsBadge tone="muted">Default</DsBadge>
                       )}
                     </td>
-                    <td className="px-4 py-3 border-b border-[#F3F4F6] text-right">
+                    <td className="px-4 py-3 border-b border-ds-line text-right">
                       <a
                         href={`/settings/email-templates/${t.type}/en/edit`}
                         className="text-[12.5px] text-ds-accent hover:underline"

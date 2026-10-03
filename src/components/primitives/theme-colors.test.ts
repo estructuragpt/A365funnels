@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest';
 
 const srcRoot = resolve(process.cwd(), 'src');
 const tokensPath = resolve(srcRoot, 'styles/tokens.css');
-const dashboardRoots = ['components/layout', 'components/primitives/ds'];
+const dashboardRoots = ['components', 'pages'];
 const sourceExtensions = new Set(['.astro', '.ts', '.tsx']);
 const excludedSegments = ['/builder/blocks/', '/lib/templates/'];
 

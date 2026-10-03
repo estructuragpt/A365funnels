@@ -141,7 +141,7 @@ function editorLabel(editorType: string): string {
           </select>
           <button
             type="submit"
-            class="inline-flex items-center justify-center font-medium rounded-[7px] h-8 px-3 text-[13px] gap-2 bg-ds-card border border-ds-line text-ds-ink hover:bg-[#F9FAFB]"
+            class="inline-flex items-center justify-center font-medium rounded-[7px] h-8 px-3 text-[13px] gap-2 bg-ds-card border border-ds-line text-ds-ink hover:bg-ds-surface2"
           >
             Filter
           </button>
@@ -172,18 +172,18 @@ function editorLabel(editorType: string): string {
                 const bindings = funnelBindings.get(p.id) || [];
                 return (
                   <tr class="hover:bg-ds-surface2 transition-colors">
-                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-[#F3F4F6]">
+                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-ds-line">
                       <a href={`/page/${p.id}`} class="text-ds-ink no-underline hover:text-ds-accent font-medium">
                         {p.name}
                       </a>
                     </td>
-                    <td class="px-4 py-3 text-[12.5px] text-ds-muted border-b border-[#F3F4F6] font-ds-mono tabular truncate max-w-[200px]">
+                    <td class="px-4 py-3 text-[12.5px] text-ds-muted border-b border-ds-line font-ds-mono tabular truncate max-w-[200px]">
                       /{p.slug}
                     </td>
-                    <td class="px-4 py-3 text-[12.5px] text-ds-slate border-b border-[#F3F4F6] font-ds-mono">
+                    <td class="px-4 py-3 text-[12.5px] text-ds-slate border-b border-ds-line font-ds-mono">
                       {editorLabel(p.editorType)} · {p.type}
                     </td>
-                    <td class="px-4 py-3 text-[12.5px] text-ds-slate border-b border-[#F3F4F6]">
+                    <td class="px-4 py-3 text-[12.5px] text-ds-slate border-b border-ds-line">
                       {bindings.length === 0 ? (
                         <span class="text-ds-faint">—</span>
                       ) : (
@@ -199,19 +199,19 @@ function editorLabel(editorType: string): string {
                         </div>
                       )}
                     </td>
-                    <td class="px-4 py-3 border-b border-[#F3F4F6]">
+                    <td class="px-4 py-3 border-b border-ds-line">
                       <span class={`inline-flex items-center gap-1.5 rounded-full border px-2 py-[3px] text-[11.5px] font-medium leading-none ${statusBadge(tone)}`}>
                         {p.status}
                       </span>
                     </td>
-                    <td class="px-4 py-3 text-[12.5px] text-ds-muted border-b border-[#F3F4F6] text-right font-ds-mono tabular whitespace-nowrap">
+                    <td class="px-4 py-3 text-[12.5px] text-ds-muted border-b border-ds-line text-right font-ds-mono tabular whitespace-nowrap">
                       {new Date(p.updatedAt).toLocaleDateString()}
                     </td>
-                    <td class="px-4 py-3 border-b border-[#F3F4F6] text-right">
+                    <td class="px-4 py-3 border-b border-ds-line text-right">
                       <div class="inline-flex gap-1.5">
                         <a
                           href={`/page/${p.id}`}
-                          class="inline-flex items-center justify-center font-medium rounded-[6px] h-7 px-2.5 text-[12px] bg-ds-card border border-ds-line text-ds-ink hover:bg-[#F9FAFB] no-underline"
+                          class="inline-flex items-center justify-center font-medium rounded-[6px] h-7 px-2.5 text-[12px] bg-ds-card border border-ds-line text-ds-ink hover:bg-ds-surface2 no-underline"
                         >
                           Edit
                         </a>
@@ -235,12 +235,12 @@ function editorLabel(editorType: string): string {
           </div>
           <div class="flex items-center gap-1">
             {safePage > 1 ? (
-              <a href={pageHref(safePage - 1)} class="inline-flex items-center justify-center rounded-[6px] h-7 px-2 text-[12px] bg-ds-card border border-ds-line text-ds-ink hover:bg-[#F9FAFB] no-underline">Prev</a>
+              <a href={pageHref(safePage - 1)} class="inline-flex items-center justify-center rounded-[6px] h-7 px-2 text-[12px] bg-ds-card border border-ds-line text-ds-ink hover:bg-ds-surface2 no-underline">Prev</a>
             ) : (
               <span class="inline-flex items-center justify-center rounded-[6px] h-7 px-2 text-[12px] bg-ds-card border border-ds-line text-ds-faint">Prev</span>
             )}
             {safePage < totalPages ? (
-              <a href={pageHref(safePage + 1)} class="inline-flex items-center justify-center rounded-[6px] h-7 px-2 text-[12px] bg-ds-card border border-ds-line text-ds-ink hover:bg-[#F9FAFB] no-underline">Next</a>
+              <a href={pageHref(safePage + 1)} class="inline-flex items-center justify-center rounded-[6px] h-7 px-2 text-[12px] bg-ds-card border border-ds-line text-ds-ink hover:bg-ds-surface2 no-underline">Next</a>
             ) : (
               <span class="inline-flex items-center justify-center rounded-[6px] h-7 px-2 text-[12px] bg-ds-card border border-ds-line text-ds-faint">Next</span>
             )}

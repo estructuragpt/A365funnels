@@ -169,7 +169,7 @@ function sortIndicator(key: FunnelListSortKey): string {
             />
             <button
               type="submit"
-              class="inline-flex items-center justify-center font-medium rounded-[7px] h-8 px-3 text-[13px] gap-2 bg-ds-card border border-ds-line text-ds-ink hover:bg-[#F9FAFB]"
+              class="inline-flex items-center justify-center font-medium rounded-[7px] h-8 px-3 text-[13px] gap-2 bg-ds-card border border-ds-line text-ds-ink hover:bg-ds-surface2"
             >
               Search
             </button>
@@ -207,14 +207,14 @@ function sortIndicator(key: FunnelListSortKey): string {
                   class="hover:bg-ds-surface2 transition-colors cursor-pointer"
                   onclick={`window.location.href='/funnel/${row.id}'`}
                 >
-                  <td class="px-4 py-3 border-b border-[#F3F4F6]">
+                  <td class="px-4 py-3 border-b border-ds-line">
                     <span
                       class="inline-block w-[7px] h-[7px] rounded-full shrink-0"
                       style={dotStyle(row.status)}
                       aria-hidden="true"
                     ></span>
                   </td>
-                  <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-[#F3F4F6]">
+                  <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-ds-line">
                     <div class="min-w-0">
                       <div class="flex items-center gap-2 min-w-0">
                         <span class="text-[13.5px] text-ds-ink truncate">{row.name}</span>
@@ -233,7 +233,7 @@ function sortIndicator(key: FunnelListSortKey): string {
                       <div class="text-[11.5px] text-ds-muted font-ds-mono tabular truncate">{row.id}</div>
                     </div>
                   </td>
-                  <td class="px-4 py-3 border-b border-[#F3F4F6]">
+                  <td class="px-4 py-3 border-b border-ds-line">
                     {row.publicUrl ? (
                       <a
                         href={row.publicUrl}
@@ -249,19 +249,19 @@ function sortIndicator(key: FunnelListSortKey): string {
                       <span class="text-[11.5px] text-ds-faint font-ds-mono">—</span>
                     )}
                   </td>
-                  <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-[#F3F4F6] text-right font-ds-mono tabular">
+                  <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-ds-line text-right font-ds-mono tabular">
                     {row.pageCount}
                   </td>
-                  <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-[#F3F4F6] text-right font-ds-mono tabular">
+                  <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-ds-line text-right font-ds-mono tabular">
                     {row.visits24h.toLocaleString()}
                   </td>
-                  <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-[#F3F4F6] text-right font-ds-mono tabular">
+                  <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-ds-line text-right font-ds-mono tabular">
                     {row.orders24h.toLocaleString()}
                   </td>
-                  <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-[#F3F4F6] text-right font-ds-mono tabular">
+                  <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-ds-line text-right font-ds-mono tabular">
                     {row.conv}
                   </td>
-                  <td class="px-4 py-3 border-b border-[#F3F4F6] text-right">
+                  <td class="px-4 py-3 border-b border-ds-line text-right">
                     <div class="inline-block">
                       {row.trend.some((t) => t > 0) ? (
                         <SparkLine client:load points={row.trend} color="#2563EB" width={80} height={20} />
@@ -270,7 +270,7 @@ function sortIndicator(key: FunnelListSortKey): string {
                       )}
                     </div>
                   </td>
-                  <td class="px-4 py-3 border-b border-[#F3F4F6] text-right">
+                  <td class="px-4 py-3 border-b border-ds-line text-right">
                     <button
                       type="button"
                       class="text-ds-muted hover:text-ds-ink p-1"
@@ -304,7 +304,7 @@ function sortIndicator(key: FunnelListSortKey): string {
               {paged.page > 1 ? (
                 <a
                   href={pageHref(paged.page - 1)}
-                  class="inline-flex items-center justify-center rounded-[6px] h-7 px-2 text-[12px] bg-ds-card border border-ds-line text-ds-ink hover:bg-[#F9FAFB] no-underline"
+                  class="inline-flex items-center justify-center rounded-[6px] h-7 px-2 text-[12px] bg-ds-card border border-ds-line text-ds-ink hover:bg-ds-surface2 no-underline"
                 >
                   Prev
                 </a>
@@ -321,7 +321,7 @@ function sortIndicator(key: FunnelListSortKey): string {
                 ) : (
                   <a
                     href={pageHref(p as number)}
-                    class="inline-flex items-center justify-center rounded-[6px] h-7 min-w-[28px] px-2 text-[12px] bg-ds-card border border-ds-line text-ds-ink hover:bg-[#F9FAFB] no-underline font-ds-mono tabular"
+                    class="inline-flex items-center justify-center rounded-[6px] h-7 min-w-[28px] px-2 text-[12px] bg-ds-card border border-ds-line text-ds-ink hover:bg-ds-surface2 no-underline font-ds-mono tabular"
                   >
                     {p}
                   </a>
@@ -330,7 +330,7 @@ function sortIndicator(key: FunnelListSortKey): string {
               {paged.page < paged.totalPages ? (
                 <a
                   href={pageHref(paged.page + 1)}
-                  class="inline-flex items-center justify-center rounded-[6px] h-7 px-2 text-[12px] bg-ds-card border border-ds-line text-ds-ink hover:bg-[#F9FAFB] no-underline"
+                  class="inline-flex items-center justify-center rounded-[6px] h-7 px-2 text-[12px] bg-ds-card border border-ds-line text-ds-ink hover:bg-ds-surface2 no-underline"
                 >
                   Next
                 </a>

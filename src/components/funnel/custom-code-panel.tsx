@@ -207,7 +207,7 @@ export default function FunnelCustomCode({ funnelId, initialScripts }: FunnelCus
                     type="button"
                     aria-label="Edit"
                     onClick={() => openEditModal(script)}
-                    className="inline-flex items-center justify-center rounded-[7px] h-8 w-8 bg-ds-card border border-ds-line text-ds-muted hover:text-ds-ink hover:bg-[#F9FAFB]"
+                    className="inline-flex items-center justify-center rounded-[7px] h-8 w-8 bg-ds-card border border-ds-line text-ds-muted hover:text-ds-ink hover:bg-ds-surface2"
                   >
                     <Pencil className="w-4 h-4" />
                   </button>

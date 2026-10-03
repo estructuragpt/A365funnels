@@ -65,7 +65,7 @@ const shortRef = (s: string | null) => (s ? (s.length > 14 ? s.slice(0, 14) + 'â
   <a
     slot="header-actions"
     href="/orders"
-    class="inline-flex items-center justify-center font-medium rounded-[7px] h-8 px-3 text-[13px] gap-2 bg-ds-card border border-ds-line text-ds-ink hover:bg-[#F9FAFB] no-underline"
+    class="inline-flex items-center justify-center font-medium rounded-[7px] h-8 px-3 text-[13px] gap-2 bg-ds-card border border-ds-line text-ds-ink hover:bg-ds-surface2 no-underline"
   >
     Back
   </a>
@@ -115,10 +115,10 @@ const shortRef = (s: string | null) => (s ? (s.length > 14 ? s.slice(0, 14) + 'â
               ) : (
                 order.lines.map((it) => (
                   <tr>
-                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-[#F3F4F6]">{it.title || 'â€”'}</td>
-                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-[#F3F4F6] text-right font-ds-mono tabular">{it.quantity}</td>
-                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-[#F3F4F6] text-right font-ds-mono tabular">{formatMoneyMinor(it.unitPriceMinor, order.currency)}</td>
-                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-[#F3F4F6] text-right font-ds-mono tabular">{formatMoneyMinor(it.lineTotalMinor, order.currency)}</td>
+                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-ds-line">{it.title || 'â€”'}</td>
+                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-ds-line text-right font-ds-mono tabular">{it.quantity}</td>
+                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-ds-line text-right font-ds-mono tabular">{formatMoneyMinor(it.unitPriceMinor, order.currency)}</td>
+                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-ds-line text-right font-ds-mono tabular">{formatMoneyMinor(it.lineTotalMinor, order.currency)}</td>
                   </tr>
                 ))
               )}
@@ -239,7 +239,7 @@ const shortRef = (s: string | null) => (s ? (s.length > 14 ? s.slice(0, 14) + 'â
         {charges.length === 0 ? (
           <div class="px-6 pb-5 text-[13px] text-ds-muted">No charges recorded.</div>
         ) : (
-          <div class="border-t border-ds-line divide-y divide-[#F3F4F6]">
+          <div class="border-t border-ds-line divide-y divide-ds-line">
             {charges.map((ch, idx) => {
               const label = idx === 0 ? 'Base charge' : `Upsell ${idx}`;
               const canRefundCharge = canRefund && intentCaptured && ch.refundableMinor > 0;
@@ -263,7 +263,7 @@ const shortRef = (s: string | null) => (s ? (s.length > 14 ? s.slice(0, 14) + 'â
                   </div>
                   {canRefundCharge && (
                     <details class="mt-2">
-                      <summary class="list-none cursor-pointer inline-flex items-center justify-center font-medium rounded-[7px] h-8 px-3 text-[13px] gap-1.5 bg-ds-card border border-ds-line text-ds-ink hover:bg-[#F9FAFB] select-none">Refund this charge</summary>
+                      <summary class="list-none cursor-pointer inline-flex items-center justify-center font-medium rounded-[7px] h-8 px-3 text-[13px] gap-1.5 bg-ds-card border border-ds-line text-ds-ink hover:bg-ds-surface2 select-none">Refund this charge</summary>
                       <form
                         class="refund-form mt-3 flex flex-col gap-2.5 max-w-[420px]"
                         data-intent-id={ledger?.intentId}
@@ -307,15 +307,15 @@ const shortRef = (s: string | null) => (s ? (s.length > 14 ? s.slice(0, 14) + 'â
               <tbody>
                 {refundRows.map((r) => (
                   <tr>
-                    <td class="px-6 py-2.5 text-[12.5px] border-b border-[#F3F4F6] font-ds-mono tabular text-ds-muted">
+                    <td class="px-6 py-2.5 text-[12.5px] border-b border-ds-line font-ds-mono tabular text-ds-muted">
                       {r.providerRefundRef || r.transactionId.slice(0, 8) + 'â€¦'}
                       <div class="text-[11px] text-ds-faint break-all">on {shortRef(r.chargeRef)}</div>
                     </td>
-                    <td class="px-4 py-2.5 text-[13px] border-b border-[#F3F4F6] font-ds-mono tabular text-right text-ds-bad">-{formatMoneyMinor(r.amountMinor, ledger?.currency || order.currency)}</td>
-                    <td class="px-4 py-2.5 border-b border-[#F3F4F6]">
+                    <td class="px-4 py-2.5 text-[13px] border-b border-ds-line font-ds-mono tabular text-right text-ds-bad">-{formatMoneyMinor(r.amountMinor, ledger?.currency || order.currency)}</td>
+                    <td class="px-4 py-2.5 border-b border-ds-line">
                       <span class={`inline-flex items-center gap-1.5 rounded-full border px-2 py-[3px] text-[11.5px] font-medium leading-none ${statusBadgeClasses(r.status)}`}>{r.status}</span>
                     </td>
-                    <td class="px-6 py-2.5 text-[12.5px] text-ds-muted border-b border-[#F3F4F6] text-right whitespace-nowrap font-ds-mono tabular" title={`${formatDateTimeInTimezone(r.createdAt, tz)} ${timezoneLabel(tz)}`}>{relativeTime(r.createdAt, now)}</td>
+                    <td class="px-6 py-2.5 text-[12.5px] text-ds-muted border-b border-ds-line text-right whitespace-nowrap font-ds-mono tabular" title={`${formatDateTimeInTimezone(r.createdAt, tz)} ${timezoneLabel(tz)}`}>{relativeTime(r.createdAt, now)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -345,11 +345,11 @@ const shortRef = (s: string | null) => (s ? (s.length > 14 ? s.slice(0, 14) + 'â
               <tbody>
                 {order.visits.map((v) => (
                   <tr>
-                    <td class="px-6 py-2.5 text-[12px] border-b border-[#F3F4F6] font-ds-mono tabular text-ds-muted whitespace-nowrap" title={`${timezoneLabel(tz)}`}>
+                    <td class="px-6 py-2.5 text-[12px] border-b border-ds-line font-ds-mono tabular text-ds-muted whitespace-nowrap" title={`${timezoneLabel(tz)}`}>
                       {formatDateTimeInTimezone(v.occurredAt, tz)}
                     </td>
-                    <td class="px-4 py-2.5 text-[12.5px] border-b border-[#F3F4F6] text-ds-slate">{v.kind || 'â€”'}</td>
-                    <td class="px-6 py-2.5 text-[12.5px] border-b border-[#F3F4F6] font-ds-mono tabular text-ds-ink truncate max-w-[420px]" title={v.url}>
+                    <td class="px-4 py-2.5 text-[12.5px] border-b border-ds-line text-ds-slate">{v.kind || 'â€”'}</td>
+                    <td class="px-6 py-2.5 text-[12.5px] border-b border-ds-line font-ds-mono tabular text-ds-ink truncate max-w-[420px]" title={v.url}>
                       {v.url}
                     </td>
                   </tr>
@@ -371,7 +371,7 @@ const shortRef = (s: string | null) => (s ? (s.length > 14 ? s.slice(0, 14) + 'â
           {activity.length === 0 ? (
             <div class="px-6 py-6 text-[13px] text-ds-muted text-center">No activity recorded.</div>
           ) : (
-            <ul class="divide-y divide-[#F3F4F6]">
+            <ul class="divide-y divide-ds-line">
               {activity.map((a) => {
                 const meta = summarizeMetadata(a.metadata);
                 const target = a.url || a.stepId || '';
@@ -409,7 +409,7 @@ const shortRef = (s: string | null) => (s ? (s.length > 14 ? s.slice(0, 14) + 'â
           <button
             type="button"
             data-action="resync"
-            class="w-full inline-flex items-center justify-center font-medium rounded-[7px] h-9 px-3 text-[13px] gap-2 bg-ds-card border border-ds-line text-ds-ink hover:bg-[#F9FAFB]"
+            class="w-full inline-flex items-center justify-center font-medium rounded-[7px] h-9 px-3 text-[13px] gap-2 bg-ds-card border border-ds-line text-ds-ink hover:bg-ds-surface2"
           >
             Resync fulfillment
           </button>
@@ -437,7 +437,7 @@ const shortRef = (s: string | null) => (s ? (s.length > 14 ? s.slice(0, 14) + 'â
           <button
             type="button"
             data-action="save-note"
-            class="self-end inline-flex items-center justify-center font-medium rounded-[7px] h-8 px-3 text-[13px] gap-2 bg-ds-card border border-ds-line text-ds-ink hover:bg-[#F9FAFB]"
+            class="self-end inline-flex items-center justify-center font-medium rounded-[7px] h-8 px-3 text-[13px] gap-2 bg-ds-card border border-ds-line text-ds-ink hover:bg-ds-surface2"
           >
             Save note
           </button>
@@ -455,7 +455,7 @@ const shortRef = (s: string | null) => (s ? (s.length > 14 ? s.slice(0, 14) + 'â
           {order.emails.length === 0 ? (
             <div class="px-6 py-5 text-[13px] text-ds-muted text-center">No emails sent yet.</div>
           ) : (
-            <ul class="divide-y divide-[#F3F4F6]">
+            <ul class="divide-y divide-ds-line">
               {order.emails.map((e) => (
                 <li class="px-6 py-3">
                   <div class="flex items-center justify-between gap-2">
@@ -493,7 +493,7 @@ const shortRef = (s: string | null) => (s ? (s.length > 14 ? s.slice(0, 14) + 'â
           {postbacks.length === 0 ? (
             <div class="px-6 py-5 text-[13px] text-ds-muted text-center">No postbacks fired.</div>
           ) : (
-            <ul class="divide-y divide-[#F3F4F6]">
+            <ul class="divide-y divide-ds-line">
               {postbacks.map((p) => (
                 <li class="px-6 py-3">
                   <div class="flex items-center justify-between gap-2">

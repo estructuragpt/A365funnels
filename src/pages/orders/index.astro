@@ -79,7 +79,7 @@ function customerLabel(email: string, name: string | null): { line1: string; lin
   <a
     slot="header-actions"
     href="/api/order/export?format=csv"
-    class="inline-flex items-center justify-center font-medium rounded-[7px] h-8 px-3 text-[13px] gap-2 bg-ds-card border border-ds-line text-ds-ink hover:bg-[#F9FAFB] no-underline"
+    class="inline-flex items-center justify-center font-medium rounded-[7px] h-8 px-3 text-[13px] gap-2 bg-ds-card border border-ds-line text-ds-ink hover:bg-ds-surface2 no-underline"
   >
     Export CSV
   </a>
@@ -197,7 +197,7 @@ function customerLabel(email: string, name: string | null): { line1: string; lin
             />
             <button
               type="submit"
-              class="inline-flex items-center justify-center font-medium rounded-[7px] h-8 px-3 text-[13px] gap-2 bg-ds-card border border-ds-line text-ds-ink hover:bg-[#F9FAFB]"
+              class="inline-flex items-center justify-center font-medium rounded-[7px] h-8 px-3 text-[13px] gap-2 bg-ds-card border border-ds-line text-ds-ink hover:bg-ds-surface2"
             >
               Filter
             </button>
@@ -224,15 +224,15 @@ function customerLabel(email: string, name: string | null): { line1: string; lin
                     class="hover:bg-ds-surface2 transition-colors cursor-pointer"
                     onclick={`window.location.href='/orders/${row.id}'`}
                   >
-                    <td class="px-4 py-3 border-b border-[#F3F4F6]">
+                    <td class="px-4 py-3 border-b border-ds-line">
                       <span class={`inline-flex items-center gap-1.5 rounded-full border px-2 py-[3px] text-[11.5px] font-medium leading-none ${statusBadgeClasses(row.status)}`}>
                         {row.status.replace('_', ' ')}
                       </span>
                     </td>
-                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-[#F3F4F6] font-ds-mono tabular">
+                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-ds-line font-ds-mono tabular">
                       {row.orderNumber}
                     </td>
-                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-[#F3F4F6]">
+                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-ds-line">
                       <div class="min-w-0">
                         <div class="text-[13.5px] text-ds-ink truncate max-w-[240px]">{cust.line1}</div>
                         {cust.line2 && (
@@ -240,13 +240,13 @@ function customerLabel(email: string, name: string | null): { line1: string; lin
                         )}
                       </div>
                     </td>
-                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-[#F3F4F6] text-right font-ds-mono tabular">
+                    <td class="px-4 py-3 text-[13.5px] text-ds-ink border-b border-ds-line text-right font-ds-mono tabular">
                       {formatMoney(row.total, row.currency)}
                     </td>
-                    <td class="px-4 py-3 text-[12.5px] text-ds-muted border-b border-[#F3F4F6] text-right font-ds-mono tabular whitespace-nowrap" title={`${formatDateTimeInTimezone(row.createdAt, tz)} ${timezoneLabel(tz)}`}>
+                    <td class="px-4 py-3 text-[12.5px] text-ds-muted border-b border-ds-line text-right font-ds-mono tabular whitespace-nowrap" title={`${formatDateTimeInTimezone(row.createdAt, tz)} ${timezoneLabel(tz)}`}>
                       {relativeTime(row.createdAt, now)}
                     </td>
-                    <td class="px-4 py-3 border-b border-[#F3F4F6] text-right">
+                    <td class="px-4 py-3 border-b border-ds-line text-right">
                       <button
                         type="button"
                         class="text-ds-muted hover:text-ds-ink p-1"
@@ -281,7 +281,7 @@ function customerLabel(email: string, name: string | null): { line1: string; lin
               {paged.page > 1 ? (
                 <a
                   href={pageHref(paged.page - 1)}
-                  class="inline-flex items-center justify-center rounded-[6px] h-7 px-2 text-[12px] bg-ds-card border border-ds-line text-ds-ink hover:bg-[#F9FAFB] no-underline"
+                  class="inline-flex items-center justify-center rounded-[6px] h-7 px-2 text-[12px] bg-ds-card border border-ds-line text-ds-ink hover:bg-ds-surface2 no-underline"
                 >
                   Prev
                 </a>
@@ -298,7 +298,7 @@ function customerLabel(email: string, name: string | null): { line1: string; lin
                 ) : (
                   <a
                     href={pageHref(p as number)}
-                    class="inline-flex items-center justify-center rounded-[6px] h-7 min-w-[28px] px-2 text-[12px] bg-ds-card border border-ds-line text-ds-ink hover:bg-[#F9FAFB] no-underline font-ds-mono tabular"
+                    class="inline-flex items-center justify-center rounded-[6px] h-7 min-w-[28px] px-2 text-[12px] bg-ds-card border border-ds-line text-ds-ink hover:bg-ds-surface2 no-underline font-ds-mono tabular"
                   >
                     {p}
                   </a>
@@ -307,7 +307,7 @@ function customerLabel(email: string, name: string | null): { line1: string; lin
               {paged.page < paged.totalPages ? (
                 <a
                   href={pageHref(paged.page + 1)}
-                  class="inline-flex items-center justify-center rounded-[6px] h-7 px-2 text-[12px] bg-ds-card border border-ds-line text-ds-ink hover:bg-[#F9FAFB] no-underline"
+                  class="inline-flex items-center justify-center rounded-[6px] h-7 px-2 text-[12px] bg-ds-card border border-ds-line text-ds-ink hover:bg-ds-surface2 no-underline"
                 >
                   Next
                 </a>
