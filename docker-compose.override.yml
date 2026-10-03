@@ -1,0 +1,16 @@
+# Local-only settings: run the checked-out source with Astro hot reload.
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    image: autonnel:local-dev
+    environment:
+      ADMIN_DOMAIN: 192.168.1.7
+    volumes:
+      - .:/app
+      - autonnel_node_modules:/app/node_modules
+    command: ["pnpm", "dev", "--", "--host", "0.0.0.0"]
+
+volumes:
+  autonnel_node_modules:
