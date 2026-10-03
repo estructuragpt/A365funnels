@@ -10,6 +10,7 @@ import { loadPaletteSeed } from '@/lib/dashboard/palette-data';
 import { findNavById } from '@/lib/dashboard/nav';
 import { getPolicyHooks } from '@/lib/plugins/registry';
 import { getCurrentTenantId } from '@/lib/tenant/context';
+import { themeBootstrapScript } from '@/components/primitives/theme';
 
 interface Crumb {
   label: string;
@@ -74,6 +75,7 @@ const globalBanners = await Promise.resolve(
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{docTitle}</title>
+    <script is:inline set:html={themeBootstrapScript}></script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

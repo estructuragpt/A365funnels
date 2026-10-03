@@ -2,6 +2,7 @@
 import { CRON_JOBS } from '@/lib/cron/catalog';
 import { checkAuth } from '@/lib/auth/middleware';
 import UserMenu from '@/components/layout/UserMenu';
+import ThemeToggle from '@/components/primitives/ThemeToggle';
 
 interface Crumb {
   label: string;
@@ -68,6 +69,7 @@ const jobCount = CRON_JOBS.length;
   </div>
 
   <div class="flex items-center gap-3 shrink-0">
+    <ThemeToggle client:load />
     <div class="hidden sm:flex items-center gap-1.5 text-[12px] text-ds-slate">
       <span
         class="inline-block w-[7px] h-[7px] rounded-full shrink-0 animate-softblink"

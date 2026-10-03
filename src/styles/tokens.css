@@ -74,6 +74,24 @@
     --ring: hsl(350 89% 60%);
   }
 
+  html[data-theme='dark'] {
+    --background: hsl(222 47% 11%);
+    --foreground: hsl(210 40% 98%);
+    --card: hsl(222 40% 14%);
+    --card-foreground: hsl(210 40% 98%);
+    --popover: hsl(222 40% 14%);
+    --popover-foreground: hsl(210 40% 98%);
+    --secondary: hsl(217 33% 19%);
+    --secondary-foreground: hsl(210 40% 98%);
+    --muted: hsl(217 33% 19%);
+    --muted-foreground: hsl(215 20% 65%);
+    --accent: hsl(217 33% 19%);
+    --accent-foreground: hsl(210 40% 98%);
+    --border: hsl(217 33% 25%);
+    --input: hsl(217 33% 25%);
+    --ring: hsl(217 91% 60%);
+  }
+
   * {
     border-color: var(--border);
   }
@@ -131,6 +149,29 @@
   --font-ds-mono: 'JetBrains Mono', ui-monospace, monospace;
 
   --animate-softblink: softblink 1.6s ease-in-out infinite;
+}
+
+html[data-theme='dark'] {
+  --color-ds-app: #111827;
+  --color-ds-card: #1F2937;
+  --color-ds-surface2: #243244;
+  --color-ds-console: #0B1220;
+  --color-ds-ink: #F3F4F6;
+  --color-ds-slate: #CBD5E1;
+  --color-ds-muted: #94A3B8;
+  --color-ds-faint: #64748B;
+  --color-ds-line: #374151;
+  --color-ds-linehi: #4B5563;
+  --color-ds-accent: #60A5FA;
+  --color-ds-okBg: #123524;
+  --color-ds-okBorder: #166534;
+  --color-ds-okText: #86EFAC;
+  --color-ds-warnBg: #3B2814;
+  --color-ds-warnBorder: #92400E;
+  --color-ds-warnText: #FDBA74;
+  --color-ds-badBg: #3B1717;
+  --color-ds-badBorder: #991B1B;
+  --color-ds-badText: #FCA5A5;
 }
 
 @theme inline {
