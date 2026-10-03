@@ -13,6 +13,7 @@ import { PreviewDropdown } from './page-editor/PreviewDropdown';
 import { SettingsPanel } from './page-editor/SettingsPanel';
 import { checkHasUnpublishedChanges } from './page-editor/checkHasUnpublishedChanges';
 import { ICON_BACK, ICON_SETTINGS } from './page-editor/icons';
+import ThemeToggle from './primitives/ThemeToggle';
 
 const GrapesJSEditor = lazy(() => import('./GrapesJSEditor'));
 
@@ -367,6 +368,7 @@ export default function PageEditor({ page: initialPage }: PageEditorProps) {
         <header className="border-b border-ds-line bg-ds-card px-4 py-2.5 flex items-center justify-between flex-shrink-0 gap-3">
           {headerLeft}
           <div className="flex items-center gap-2">
+            <ThemeToggle />
             <SaveStatusIndicator saveStatus={saveStatus} saveErrorMsg={saveErrorMsg} onRetry={handleManualSave} />
             <DsButton size="sm" leftIcon={ICON_SETTINGS} onClick={() => setPageSettingsOpen(true)}>
               Page Settings
@@ -419,6 +421,7 @@ export default function PageEditor({ page: initialPage }: PageEditorProps) {
       <header className="border-b border-ds-line bg-ds-card px-4 py-2.5 flex items-center justify-between flex-shrink-0 gap-3">
         {headerLeft}
         <div className="flex items-center gap-2">
+          <ThemeToggle />
           <SaveStatusIndicator saveStatus={saveStatus} saveErrorMsg={saveErrorMsg} onRetry={handleManualSave} />
           <PreviewDropdown slug={page.slug} canDiscard={canDiscard} discarding={isDiscarding} onDiscard={handleDiscard} />
           <DsButton variant="primary" size="sm" onClick={handlePublish} disabled={isPublishing}>

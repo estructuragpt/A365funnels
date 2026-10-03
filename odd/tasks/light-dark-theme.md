@@ -60,3 +60,25 @@ Add an application-wide accessible light/dark theme switch with dark mode as the
 
 ## Next step
 Refresh the running dashboard and review the updated dark-mode contrast; no implementation work remains.
+
+## Follow-up: editor capture theme parity
+
+### Objective
+Apply the application light/dark theme consistently to the Puck editor chrome and custom AI/settings panels without changing the user-generated page rendered in Puck's preview iframe.
+
+### Scope
+- Map Puck editor CSS variables to Autonnel semantic tokens.
+- Replace light-only custom panel colors in `puck.css`.
+- Expose the existing theme toggle from the page editor header.
+- Add a deterministic CSS regression test.
+
+### Progress
+- [x] Theme Puck editor chrome and custom panels through semantic tokens.
+- [x] Add the existing editor-header theme toggle to HTML and Puck editors.
+- [x] Add focused regression coverage in `src/components/primitives/puck-theme.test.ts`.
+- [ ] Run focused tests, full suite, and build.
+
+### Follow-up verification
+- `pnpm exec vitest run src/components/primitives/theme.test.ts src/components/primitives/theme-colors.test.ts src/components/primitives/puck-theme.test.ts` — passed, 7 tests.
+- `pnpm test` — unavailable as a clean baseline: existing MediaField tests fail because `window.localStorage` is undefined in the current Node test environment; the command also exceeded the harness timeout.
+- `pnpm build` — blocked before Astro compilation by root-owned `.astro/content.d.ts` (`EACCES`); Prisma generation completed.
