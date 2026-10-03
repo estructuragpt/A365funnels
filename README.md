@@ -168,6 +168,29 @@ different tree and ignores those pins.
 For running Autonnel as a product, prefer the Docker path above: it needs no Node
 toolchain and no external database.
 
+### Develop from source with Docker
+
+The repository's local Compose override mounts the checkout into a development
+container, so Astro reloads source edits without rebuilding the application
+image. On the first run, build the development image and start the stack:
+
+```bash
+docker compose up --build
+```
+
+After changing source files, restart with the faster command when needed:
+
+```bash
+docker compose up
+```
+
+The override keeps dependencies in a named `/app/node_modules` volume and
+preserves LAN admin access at `http://192.168.1.7:4321`. The base
+`docker-compose.yml` remains the published-image, production-like validation
+path and is not changed by the local override. If PostgreSQL is already
+available separately, `pnpm dev` is also available as a host-only alternative
+with the required environment variables configured.
+
 ## Configuration
 
 Autonnel reads two kinds of configuration. Environment holds only operational
